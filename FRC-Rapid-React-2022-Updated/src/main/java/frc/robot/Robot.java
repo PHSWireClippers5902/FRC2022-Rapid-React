@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import frc.robot.subsystems.*;
-import frc.robot.RobotMap;
+import frc.robot.RobotContainer;
 
 import edu.wpi.first.wpilibj.Timer;
 /**
@@ -26,16 +26,14 @@ import edu.wpi.first.wpilibj.Timer;
  * project.
  */
 public class Robot extends TimedRobot {
-  public static OI oi;
   private static final String kDefaultAuto = "Default";
   private static final String kCustomAuto = "My Auto";
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
-  public static MecanumSystem mecanumSystem;
-  public static LightSystem lightSystem;
   private double startTime;
   public static boolean retractOnDisabled;
   public static boolean disabled;
+  public static RobotContainer m_robotContainer;
   
   /**
    * This function is run when the robot is first started up and should be used
@@ -44,16 +42,13 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     
+    m_robotContainer = new RobotContainer();
     disabled = false;
-    lightSystem = new LightSystem();
-    mecanumSystem = new MecanumSystem();
-    oi = new OI();
-
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
     //SmartDashboard.putData("Auto choices", m_chooser);
     System.out.println("Robot Init - NOW");
-    RobotMap.init();
+    RobotContainer.init();
   }
 
   /**
@@ -89,9 +84,9 @@ public class Robot extends TimedRobot {
   public void autonomousInit() {
     m_autoSelected = m_chooser.getSelected();
     System.out.println("Auto selected: " + m_autoSelected);
-    Robot.lightSystem.getAllianceColor();
+    RobotContainer.lightSystem.getAllianceColor();
     startTime = Timer.getFPGATimestamp();
-    Robot.lightSystem.getAllianceColor();
+    RobotContainer.lightSystem.getAllianceColor();
   }
 
   /**
@@ -104,7 +99,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
-    Robot.lightSystem.getAllianceColor();
+    RobotContainer.lightSystem.getAllianceColor();
   }
 
   /**
@@ -113,7 +108,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     //driveTrain.driveWithXbox();
-    mecanumSystem.driveWithMecanum();
+    RobotContainer.mecanumSystem.driveWithMecanum();
     
    // RobotMap.topSolenoid.set(false);
     //RobotMap.frontSolenoid.set(false);
