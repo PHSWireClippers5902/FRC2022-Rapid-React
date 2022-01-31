@@ -5,11 +5,11 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 
-public class ActivateTest extends CommandBase {
+public class ActivateFlyWheel extends CommandBase {
 
   private double speed;
 
-  public ActivateTesteed) {
+  public ActivateFlyWheel(double speed){
     this.speed = speed;
   }
 

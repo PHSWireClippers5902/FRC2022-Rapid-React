@@ -31,44 +31,28 @@ public class RobotContainer {
     public static WPI_TalonSRX backRightWheel = new WPI_TalonSRX(3);
     public static WPI_TalonSRX backLeftWheel = new WPI_TalonSRX(4);
 
-    public static WPI_TalonSRX testMotor = new WPI_TalonSRX(8);
+    public static WPI_TalonSRX testMotor = new WPI_TalonSRX(5);
 
     public static SpeedController lightsR;
     public static SpeedController lightsL;
 
 
-    // Xbox
+    // Xbo
   XboxController xbox = new XboxController(0);
-  private JoystickButton xboxLeftTrigger;
-  private JoystickButton xboxRightTrigger;
-  private JoystickButton xboxButtonY = new JoystickButton(xbox, 4);
-  private JoystickButton xboxButtonX = new JoystickButton(xbox, 3).whenPressed(new ActivateFlyWheel(.5));
-  private JoystickButton xboxButtonA = new JoystickButton(xbox, 1);
-  private JoystickButton xboxButtonB = new JoystickButton(xbox, 2);
 
-  // Logitech Buttons
-  public Joystick logitech = new Joystick(1);;
-  private JoystickButton logitechButtonY;
-  private JoystickButton logitechButtonB;
-  private JoystickButton logitechButtonA;
-  private JoystickButton logitechButtonX;
-  private JoystickButton logitechLeftBumper;
-  private JoystickButton logitechRightBumper;
-  private JoystickButton logitechLeftStickPush;
-  private JoystickButton logitechRightStickPush;
-  private JoystickButton logitechDPadLeft;
-  private JoystickButton logitechDPadRight;
-
-
+  public RobotContainer(){
+    configureButtonBindings();
+  }
   
+  private void configureButtonBindings(){
+    new JoystickButton(xbox, 3)
+    .whenPressed(new ActivateFlyWheel(.5));
+  }
 
   public XboxController getXbox() {
     return xbox;
   }
 
-  public Joystick getLogitech() {
-    return logitech;
-  }
 
     public static void init() {
         frontLeftWheel.configOpenloopRamp(0.5);
