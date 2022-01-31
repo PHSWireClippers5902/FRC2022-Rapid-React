@@ -1,25 +1,26 @@
-// Copyright (c) FIRST and other WPILib contributors.
-// Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
 package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
+import frc.robot.subsystems.FlyWheel;
 
 public class ActivateFlyWheel extends CommandBase {
 
+  private final FlyWheel m_flyWheel;
   private double speed;
 
-  public ActivateFlyWheel(double speed){
+  public ActivateFlyWheel(double speed, FlyWheel subSystem){
+    m_flyWheel = subSystem;
+    addRequirements(m_flyWheel);
     this.speed = speed;
   }
 
   @Override
-  public void initialize() {
-    RobotContainer.flyWheelSystem.gofaster(speed);
+  public void execute() {
+    m_flyWheel.gofaster(speed);
   }
 
   @Override
   public void end(boolean interrupted) {
-    RobotContainer.flyWheelSystem.gofaster(0);
+    m_flyWheel.gofaster(0);
   }
 }

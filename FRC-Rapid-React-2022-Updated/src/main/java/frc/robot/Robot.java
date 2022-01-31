@@ -84,9 +84,9 @@ public class Robot extends TimedRobot {
   public void autonomousInit() {
     m_autoSelected = m_chooser.getSelected();
     System.out.println("Auto selected: " + m_autoSelected);
-    RobotContainer.lightSystem.getAllianceColor();
+    //RobotContainer.lightSystem.getAllianceColor();
     startTime = Timer.getFPGATimestamp();
-    RobotContainer.lightSystem.getAllianceColor();
+    //RobotContainer.lightSystem.getAllianceColor();
   }
 
   /**
@@ -99,7 +99,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
-    RobotContainer.lightSystem.getAllianceColor();
+    //RobotContainer.lightSystem.getAllianceColor();
   }
 
   /**

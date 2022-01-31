@@ -1,9 +1,10 @@
 package frc.robot.subsystems;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotContainer;
 
-public class FlyWheel extends Subsystem{
+public class FlyWheel extends SubsystemBase{
     public void initDefaultCommand(){
 
     }

@@ -22,8 +22,8 @@ public class RobotContainer {
 
     //initializing subsystems
     public static MecanumSystem mecanumSystem = new MecanumSystem();
-    public static LightSystem lightSystem = new LightSystem();
-    public static FlyWheel flyWheelSystem = new FlyWheel();
+    private final LightSystem m_lightSystem = new LightSystem();
+    public final FlyWheel m_flyWheelSystem = new FlyWheel();
 
     //creating motor controllers
     public static WPI_TalonSRX frontRightWheel = new WPI_TalonSRX(1);
@@ -46,7 +46,7 @@ public class RobotContainer {
   
   private void configureButtonBindings(){
     new JoystickButton(xbox, 3)
-    .whenPressed(new ActivateFlyWheel(.5));
+    .whenPressed(new ActivateFlyWheel(.5, m_flyWheelSystem));
   }
 
   public XboxController getXbox() {
