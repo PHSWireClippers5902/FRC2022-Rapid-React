@@ -2,7 +2,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.DriverStation;
-import frc.robot.RobotMap;
+import frc.robot.RobotContainer;
 
 /**
  * Add your docs here.
@@ -17,8 +17,8 @@ public class LightSystem extends SubsystemBase {
 
   public void moreLights() {
     y += .001;
-    RobotMap.lightsR.set(y);
-    RobotMap.lightsL.set(y);
+    RobotContainer.lightsR.set(y);
+    RobotContainer.lightsL.set(y);
     //System.out.println(y);
   }
 
@@ -26,8 +26,8 @@ public class LightSystem extends SubsystemBase {
     DriverStation.Alliance color;
     color = DriverStation.getAlliance();
     if (color == DriverStation.Alliance.valueOf("Blue")) {
-      RobotMap.lightsR.set(.85);
-      RobotMap.lightsL.set(.85);
+      RobotContainer.lightsR.set(.85);
+      RobotContainer.lightsL.set(.85);
     } else if (color == DriverStation.Alliance.valueOf("Red")) {
       red();
     } else {
@@ -36,125 +36,125 @@ public class LightSystem extends SubsystemBase {
   }
 
   public void party() {
-    RobotMap.lightsR.set(-69.69);
-    RobotMap.lightsL.set(-69.69);
+    RobotContainer.lightsR.set(-69.69);
+    RobotContainer.lightsL.set(-69.69);
   }
 
   public void chaseBlue() {
-    RobotMap.lightsR.set(-.29);
-    RobotMap.lightsL.set(-.29);
+    RobotContainer.lightsR.set(-.29);
+    RobotContainer.lightsL.set(-.29);
   }
 
   public void chaseRed() {
-    RobotMap.lightsR.set(-.32);
-    RobotMap.lightsL.set(-.32);
+    RobotContainer.lightsR.set(-.32);
+    RobotContainer.lightsL.set(-.32);
   }
 
   public void BPMOcean() {
-    RobotMap.lightsR.set(-.65);
-    RobotMap.lightsL.set(-.65);
+    RobotContainer.lightsR.set(-.65);
+    RobotContainer.lightsL.set(-.65);
   }
 
   public void BPMLava() {
-    RobotMap.lightsR.set(-.63);
-    RobotMap.lightsL.set(-.63);
+    RobotContainer.lightsR.set(-.63);
+    RobotContainer.lightsL.set(-.63);
   }
 
   public void revenge() {
-    RobotMap.lightsR.set(-.05);
-    RobotMap.lightsL.set(-.05);
+    RobotContainer.lightsR.set(-.05);
+    RobotContainer.lightsL.set(-.05);
   }
 
   public void white() {
-    RobotMap.lightsR.set(.93);
-    RobotMap.lightsL.set(.93);
+    RobotContainer.lightsR.set(.93);
+    RobotContainer.lightsL.set(.93);
   }
 
   public void blueShots() {
-    RobotMap.lightsR.set(-.83);
-    RobotMap.lightsL.set(-.83);
+    RobotContainer.lightsR.set(-.83);
+    RobotContainer.lightsL.set(-.83);
   }
 
   public void blue() {
-    RobotMap.lightsR.set(.85);
-    RobotMap.lightsL.set(.85);
+    RobotContainer.lightsR.set(.85);
+    RobotContainer.lightsL.set(.85);
   }
 
   public void red() {
-    RobotMap.lightsR.set(.61);
-    RobotMap.lightsL.set(.61);
+    RobotContainer.lightsR.set(.61);
+    RobotContainer.lightsL.set(.61);
   }
 
   public void beatBlue() {
-    RobotMap.lightsR.set(-.23);
-    RobotMap.lightsL.set(-.23);
+    RobotContainer.lightsR.set(-.23);
+    RobotContainer.lightsL.set(-.23);
   }
 
   public void oceanBlue() {
-    RobotMap.lightsR.set(-.41);
-    RobotMap.lightsL.set(-.41);
+    RobotContainer.lightsR.set(-.41);
+    RobotContainer.lightsL.set(-.41);
   }
 
   public void redShots() {
-    RobotMap.lightsR.set(-.85);
-    RobotMap.lightsL.set(-.85);
+    RobotContainer.lightsR.set(-.85);
+    RobotContainer.lightsL.set(-.85);
   }
 
   public void scannerRed() {
-    RobotMap.lightsR.set(-.35);
-    RobotMap.lightsL.set(-.35);
+    RobotContainer.lightsR.set(-.35);
+    RobotContainer.lightsL.set(-.35);
   }
 
   public void beatRed() {
-    RobotMap.lightsR.set(-.25);
-    RobotMap.lightsL.set(-.25);
+    RobotContainer.lightsR.set(-.25);
+    RobotContainer.lightsL.set(-.25);
   }
 
   public void beatWhite() {
-    RobotMap.lightsR.set(-.21);
-    RobotMap.lightsL.set(-.21);
+    RobotContainer.lightsR.set(-.21);
+    RobotContainer.lightsL.set(-.21);
   }
 
   public void scannerGray() {
-    RobotMap.lightsR.set(-.33);
-    RobotMap.lightsL.set(-.33);
+    RobotContainer.lightsR.set(-.33);
+    RobotContainer.lightsL.set(-.33);
   }
 
   public void gray() {
-    RobotMap.lightsR.set(.95);
-    RobotMap.lightsL.set(.95);
+    RobotContainer.lightsR.set(.95);
+    RobotContainer.lightsL.set(.95);
   }
 
   public void strobeYellow() {
-    RobotMap.lightsR.set(-.07);
-    RobotMap.lightsL.set(-.07);
+    RobotContainer.lightsR.set(-.07);
+    RobotContainer.lightsL.set(-.07);
 
   }
 
   public void lavaError() {
-    RobotMap.lightsR.set(.49);
-    RobotMap.lightsL.set(.49);
+    RobotContainer.lightsR.set(.49);
+    RobotContainer.lightsL.set(.49);
 
   }
 
   public void rainbowGlitter() {
-    RobotMap.lightsR.set(-.89);
-    RobotMap.lightsL.set(-.89);
+    RobotContainer.lightsR.set(-.89);
+    RobotContainer.lightsL.set(-.89);
   }
 
   public void confetti() {
-    RobotMap.lightsR.set(-.87);
-    RobotMap.lightsL.set(-.87);
+    RobotContainer.lightsR.set(-.87);
+    RobotContainer.lightsL.set(-.87);
   }
 
   public void off() {
-    RobotMap.lightsR.set(0);
-    RobotMap.lightsL.set(0);
+    RobotContainer.lightsR.set(0);
+    RobotContainer.lightsL.set(0);
   }
 
   public void smartdash(double color) {
-    RobotMap.lightsR.set(color);
-    RobotMap.lightsL.set(color);
+    RobotContainer.lightsR.set(color);
+    RobotContainer.lightsL.set(color);
   }
 
   /*
