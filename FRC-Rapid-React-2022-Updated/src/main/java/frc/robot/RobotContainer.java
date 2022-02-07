@@ -26,10 +26,10 @@ public class RobotContainer {
     public final FlyWheel m_flyWheelSystem = new FlyWheel();
 
     //creating motor controllers
-    public static WPI_TalonSRX frontRightWheel = new WPI_TalonSRX(1);
-    public static WPI_TalonSRX frontLeftWheel = new WPI_TalonSRX(2);
-    public static WPI_TalonSRX backRightWheel = new WPI_TalonSRX(3);
-    public static WPI_TalonSRX backLeftWheel = new WPI_TalonSRX(4);
+    public static WPI_TalonSRX frontRightWheel = new WPI_TalonSRX(8);
+    public static WPI_TalonSRX frontLeftWheel = new WPI_TalonSRX(3);
+    public static WPI_TalonSRX backRightWheel = new WPI_TalonSRX(4);
+    public static WPI_TalonSRX backLeftWheel = new WPI_TalonSRX(1);
 
     public static WPI_TalonSRX testMotor = new WPI_TalonSRX(5);
 
