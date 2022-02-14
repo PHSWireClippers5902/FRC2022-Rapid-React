@@ -72,7 +72,7 @@ public class MecanumSystem extends SubsystemBase {
 
         
 
-        System.out.println("StickX " + leftStickXValue + "StickY " + rightTriggerValue);
+        //System.out.println("StickX " + leftStickXValue + "StickY " + rightTriggerValue);
     }
 
 

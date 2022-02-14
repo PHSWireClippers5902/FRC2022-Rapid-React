@@ -1,7 +1,7 @@
 package frc.robot;
 
-import edu.wpi.first.wpilibj.SpeedController;
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
+//import edu.wpi.first.wpilibj.SpeedController;
+//import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj.Ultrasonic;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
@@ -15,38 +15,47 @@ import edu.wpi.first.wpilibj.XboxController;
 // import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj.Joystick;
-
+import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 public class RobotContainer {
 
     //initializing subsystems
     public static MecanumSystem mecanumSystem = new MecanumSystem();
-    private final LightSystem m_lightSystem = new LightSystem();
+    //private final LightSystem m_lightSystem = new LightSystem();
     public final FlyWheel m_flyWheelSystem = new FlyWheel();
+    public final SparkTest m_SparkTest = new SparkTest();
+    public final LinearActuator m_linearActuator = new LinearActuator();
 
     //creating motor controllers
-    public static WPI_TalonSRX frontRightWheel = new WPI_TalonSRX(8);
-    public static WPI_TalonSRX frontLeftWheel = new WPI_TalonSRX(3);
-    public static WPI_TalonSRX backRightWheel = new WPI_TalonSRX(4);
-    public static WPI_TalonSRX backLeftWheel = new WPI_TalonSRX(1);
+    public static WPI_TalonSRX frontRightWheel = new WPI_TalonSRX(7);
+    public static WPI_TalonSRX frontLeftWheel = new WPI_TalonSRX(4);
+    public static WPI_TalonSRX backRightWheel = new WPI_TalonSRX(3);
+    public static WPI_TalonSRX backLeftWheel = new WPI_TalonSRX(6);
 
     public static WPI_TalonSRX testMotor = new WPI_TalonSRX(5);
 
-    public static SpeedController lightsR;
-    public static SpeedController lightsL;
+    public static Spark sparkTestMotor = new Spark(8);
+
+    public static Servo actuatorTest = new Servo(1); //Temp ID change to servo id on roboRio
+
+    //public static SpeedController lightsR;
+    //public static SpeedController lightsL;
 
 
-    // Xbo
+    // Xbox
   XboxController xbox = new XboxController(0);
 
   public RobotContainer(){
     configureButtonBindings();
   }
   
-  private void configureButtonBindings(){
-    new JoystickButton(xbox, 3)
-    .whenPressed(new ActivateFlyWheel(.5, m_flyWheelSystem));
+  private void configureButtonBindings(){ 
+    new JoystickButton(xbox, 3)//X button
+    //.whenPressed(new ActivateFlyWheel(.5, m_flyWheelSystem));
+    .whenPressed(new ActivateLinearActuator(0.0, m_linearActuator)); //Activates a linear actuator
+    new JoystickButton(xbox, 1)//A button
+    .whenPressed(new ActivateSpark(.5, m_SparkTest));
   }
 
   public XboxController getXbox() {
@@ -61,7 +70,7 @@ public class RobotContainer {
         backRightWheel.configOpenloopRamp(0.5);
 
         // Lights
-        lightsR = new Spark(0);
-        lightsL = new Spark(3);
+        //lightsR = new Spark(0);
+        //lightsL = new Spark(3);
     }
 }
