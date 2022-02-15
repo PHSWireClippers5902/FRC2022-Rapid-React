@@ -18,12 +18,15 @@ import edu.wpi.first.wpilibj.Joystick;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
+import edu.wpi.first.wpilibj.AnalogInput;
+
 public class RobotContainer {
 
     //initializing subsystems
     public static MecanumSystem mecanumSystem = new MecanumSystem();
     private final LightSystem m_lightSystem = new LightSystem();
     public final FlyWheel m_flyWheelSystem = new FlyWheel();
+    public final UltrasonicSystem m_ultrasonicSystem = new UltrasonicSystem();
 
     //creating motor controllers
     public static WPI_TalonSRX frontRightWheel = new WPI_TalonSRX(8);
@@ -36,6 +39,9 @@ public class RobotContainer {
     public static SpeedController lightsR;
     public static SpeedController lightsL;
 
+    //Sensors
+    public static AnalogInput ultrasonic = new AnalogInput(0);
+
 
     // Xbo
   XboxController xbox = new XboxController(0);
@@ -47,6 +53,8 @@ public class RobotContainer {
   private void configureButtonBindings(){
     new JoystickButton(xbox, 3)
     .whenPressed(new ActivateFlyWheel(.5, m_flyWheelSystem));
+    new JoystickButton(xbox, 4)
+    .whileHeld(new CheckDistance(m_ultrasonicSystem), true);
   }
 
   public XboxController getXbox() {
