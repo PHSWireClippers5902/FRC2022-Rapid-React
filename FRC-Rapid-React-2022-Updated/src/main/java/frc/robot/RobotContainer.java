@@ -24,7 +24,6 @@ public class RobotContainer {
     public static MecanumSystem mecanumSystem = new MecanumSystem();
     //private final LightSystem m_lightSystem = new LightSystem();
     public final FlyWheel m_flyWheelSystem = new FlyWheel();
-    public final SparkTest m_SparkTest = new SparkTest();
     public final LinearActuator m_linearActuator = new LinearActuator();
 
     //creating motor controllers
@@ -37,7 +36,7 @@ public class RobotContainer {
 
     public static Spark sparkTestMotor = new Spark(8);
 
-    public static Servo actuatorTest = new Servo(1); //Temp ID change to servo id on roboRio
+    public static Servo actuatorTest = new Servo(0); //Temp ID change to servo id on roboRio
 
     //public static SpeedController lightsR;
     //public static SpeedController lightsL;
@@ -51,11 +50,10 @@ public class RobotContainer {
   }
   
   private void configureButtonBindings(){ 
-    new JoystickButton(xbox, 3)//X button
+    new JoystickButton(xbox, 4)//Y button
     //.whenPressed(new ActivateFlyWheel(.5, m_flyWheelSystem));
-    .whenPressed(new ActivateLinearActuator(0.0, m_linearActuator)); //Activates a linear actuator
-    new JoystickButton(xbox, 1)//A button
-    .whenPressed(new ActivateSpark(.5, m_SparkTest));
+    .whileHeld(new ActivateLinearActuator(1.0, m_linearActuator)); //Activates a linear actuator
+    new JoystickButton(xbox, 4).whenReleased(new ActivateLinearActuator(-1.0, m_linearActuator));
   }
 
   public XboxController getXbox() {

@@ -100,7 +100,9 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopInit() {
     //RobotContainer.lightSystem.getAllianceColor();
-  }
+
+    }
+  
 
   /**
    * This function is called periodically during operator control.
@@ -109,9 +111,9 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     //driveTrain.driveWithXbox();
     RobotContainer.mecanumSystem.driveWithMecanum();
-    RobotContainer.actuatorTest.setSpeed(.1);
+    //RobotContainer.actuatorTest.setSpeed(.1);
     //set angle also gives some weird results
-    System.out.println(RobotContainer.actuatorTest.getAngle());
+    //System.out.println(RobotContainer.actuatorTest.getAngle());
     
    // RobotMap.topSolenoid.set(false);
     //RobotMap.frontSolenoid.set(false);

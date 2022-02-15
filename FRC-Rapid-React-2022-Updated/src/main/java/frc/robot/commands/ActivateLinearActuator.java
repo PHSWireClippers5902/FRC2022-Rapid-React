@@ -18,13 +18,13 @@ public class ActivateLinearActuator extends CommandBase {
     }
 
     @Override
-    public void initialize() {
+    public void execute() {
         m_linearActuator.change(amount);
         //System.out.println("gogogooooogogo" + amount);
     }
     @Override
     public boolean isFinished(){
-        return true;
+        return false;
     }
 
     
