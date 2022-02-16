@@ -1,26 +1,27 @@
 package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
-import frc.robot.subsystems.FlyWheel;
+import frc.robot.subsystems.Spark;
 
-public class ActivateFlyWheel extends CommandBase {
+public class ActivateSpark extends CommandBase {
 
-  private final FlyWheel m_flyWheel;
+  private final SparkSub m_spark;
   private double speed;
 
   public ActivateFlyWheel(double speed, FlyWheel subSystem){
-    m_flyWheel = subSystem;
-    addRequirements(m_flyWheel);
+    m_spark = subSystem;
+    addRequirements(m_spark);
     this.speed = speed;
   }
 
   @Override
   public void execute() {
-    m_flyWheel.speed(speed);
-  }
+    m_spark.speed(speed);
+  })
 
   @Override
   public void end(boolean interrupted) {
-    m_flyWheel.speed(0);
+    m_spark.gofaster(0);
   }
-}
+
+

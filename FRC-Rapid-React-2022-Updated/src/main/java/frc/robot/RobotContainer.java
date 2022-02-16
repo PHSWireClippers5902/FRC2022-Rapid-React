@@ -24,6 +24,7 @@ public class RobotContainer {
     public static MecanumSystem mecanumSystem = new MecanumSystem();
     private final LightSystem m_lightSystem = new LightSystem();
     public final FlyWheel m_flyWheelSystem = new FlyWheel();
+   
 
     //creating motor controllers
     public static WPI_TalonSRX frontRightWheel = new WPI_TalonSRX(8);
@@ -32,12 +33,13 @@ public class RobotContainer {
     public static WPI_TalonSRX backLeftWheel = new WPI_TalonSRX(1);
 
     public static WPI_TalonSRX testMotor = new WPI_TalonSRX(5);
-
+    public static Spark spark = new Spark(0);
+    public static Spark spark2 = new Spark (8);
     public static SpeedController lightsR;
     public static SpeedController lightsL;
 
 
-    // Xbo
+    // Xbox
   XboxController xbox = new XboxController(0);
 
   public RobotContainer(){
@@ -46,7 +48,7 @@ public class RobotContainer {
   
   private void configureButtonBindings(){
     new JoystickButton(xbox, 3)
-    .whenPressed(new ActivateFlyWheel(.5, m_flyWheelSystem));
+    .whenHeld(new ActivateFlyWheel(.25, m_flyWheelSystem));
   }
 
   public XboxController getXbox() {
