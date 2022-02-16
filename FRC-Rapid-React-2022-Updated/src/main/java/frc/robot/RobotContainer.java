@@ -1,8 +1,9 @@
 package frc.robot;
 
-import edu.wpi.first.wpilibj.SpeedController;
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
-import edu.wpi.first.wpilibj.motorcontrol.Spark;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
 import edu.wpi.first.wpilibj.Ultrasonic;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
@@ -24,9 +25,9 @@ public class RobotContainer {
 
     //initializing subsystems
     public static MecanumSystem mecanumSystem = new MecanumSystem();
-    private final LightSystem m_lightSystem = new LightSystem();
     public final FlyWheel m_flyWheelSystem = new FlyWheel();
-    public final UltrasonicSystem m_ultrasonicSystem = new UltrasonicSystem();
+    public final UltrasonicSystem m_uUltrasonicSystem = new UltrasonicSystem();
+   
 
     //creating motor controllers
     public static WPI_TalonSRX frontRightWheel = new WPI_TalonSRX(8);
@@ -35,15 +36,14 @@ public class RobotContainer {
     public static WPI_TalonSRX backLeftWheel = new WPI_TalonSRX(1);
 
     public static WPI_TalonSRX testMotor = new WPI_TalonSRX(5);
-
-    public static SpeedController lightsR;
-    public static SpeedController lightsL;
+    public static CANSparkMax spark = new CANSparkMax(1, MotorType.kBrushless);
+    //public static CANSparkMax spark2 = new CANSparkMax(8, MotorType.kBrushless);
 
     //Sensors
     public static AnalogInput ultrasonic = new AnalogInput(0);
 
 
-    // Xbo
+    // Xbox
   XboxController xbox = new XboxController(0);
 
   public RobotContainer(){
@@ -52,9 +52,7 @@ public class RobotContainer {
   
   private void configureButtonBindings(){
     new JoystickButton(xbox, 3)
-    .whenPressed(new ActivateFlyWheel(.5, m_flyWheelSystem));
-    new JoystickButton(xbox, 4)
-    .whileHeld(new CheckDistance(m_ultrasonicSystem), true);
+    .whenHeld(new ActivateFlyWheel(.25, m_flyWheelSystem));
   }
 
   public XboxController getXbox() {
@@ -68,8 +66,5 @@ public class RobotContainer {
         backLeftWheel.configOpenloopRamp(0.5);
         backRightWheel.configOpenloopRamp(0.5);
 
-        // Lights
-        lightsR = new Spark(0);
-        lightsL = new Spark(3);
     }
 }

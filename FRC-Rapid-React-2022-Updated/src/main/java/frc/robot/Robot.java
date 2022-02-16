@@ -109,6 +109,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopInit() {
     //RobotContainer.lightSystem.getAllianceColor();
+    RobotContainer.spark.set(0.25);
   }
 
   /**
