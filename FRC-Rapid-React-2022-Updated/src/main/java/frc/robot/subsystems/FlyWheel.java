@@ -7,15 +7,10 @@ import frc.robot.RobotContainer;
 import frc.robot.commands.ActivateFlyWheel;
 
 public class FlyWheel extends SubsystemBase{
-
-    public void initDefaultCommand(){
-       setDefaultCommand(new ActivateFlyWheel(-.1, Robot.m_robotContainer.m_flyWheelSystem));
-
-    }
   
     public void speed(double speed){
         RobotContainer.spark.set(speed);
-        //RobotContainer.spark2.set(speed * -1);
+        RobotContainer.spark2.set(speed * -1);
        
     }
 }

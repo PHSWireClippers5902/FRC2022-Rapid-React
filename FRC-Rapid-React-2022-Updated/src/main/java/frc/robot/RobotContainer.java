@@ -36,8 +36,8 @@ public class RobotContainer {
     public static WPI_TalonSRX backLeftWheel = new WPI_TalonSRX(1);
 
     public static WPI_TalonSRX testMotor = new WPI_TalonSRX(5);
-    public static CANSparkMax spark = new CANSparkMax(1, MotorType.kBrushless);
-    //public static CANSparkMax spark2 = new CANSparkMax(8, MotorType.kBrushless);
+    public static CANSparkMax spark = new CANSparkMax(9, MotorType.kBrushless);
+    public static CANSparkMax spark2 = new CANSparkMax(8, MotorType.kBrushless);
 
     //Sensors
     public static AnalogInput ultrasonic = new AnalogInput(0);
@@ -47,6 +47,7 @@ public class RobotContainer {
   XboxController xbox = new XboxController(0);
 
   public RobotContainer(){
+    m_flyWheelSystem.setDefaultCommand(new ActivateFlyWheel(-.1, m_flyWheelSystem));
     configureButtonBindings();
   }
   
