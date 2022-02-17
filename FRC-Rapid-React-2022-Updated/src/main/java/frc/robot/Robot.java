@@ -16,8 +16,13 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import frc.robot.subsystems.*;
 import frc.robot.RobotContainer;
+import edu.wpi.first.wpilibj.Servo;
 
+import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj.Timer;
+
+
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
@@ -34,6 +39,8 @@ public class Robot extends TimedRobot {
   public static boolean retractOnDisabled;
   public static boolean disabled;
   public static RobotContainer m_robotContainer;
+
+
   
   /**
    * This function is run when the robot is first started up and should be used
@@ -41,7 +48,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    
+
     m_robotContainer = new RobotContainer();
     disabled = false;
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
@@ -49,6 +56,8 @@ public class Robot extends TimedRobot {
     //SmartDashboard.putData("Auto choices", m_chooser);
     System.out.println("Robot Init - NOW");
     RobotContainer.init();
+
+
   }
 
   /**
@@ -101,8 +110,7 @@ public class Robot extends TimedRobot {
   public void teleopInit() {
     //RobotContainer.lightSystem.getAllianceColor();
 
-    }
-  
+   }
 
   /**
    * This function is called periodically during operator control.
