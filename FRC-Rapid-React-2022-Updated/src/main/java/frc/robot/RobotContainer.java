@@ -30,21 +30,6 @@ public class RobotContainer {
     public final LinearActuator m_linearActuator = new LinearActuator();
     public final UltrasonicSystem m_uUltrasonicSystem = new UltrasonicSystem();
 
-
-    //creating motor controllers
-    public static WPI_TalonSRX frontRightWheel = new WPI_TalonSRX(7);
-    public static WPI_TalonSRX frontLeftWheel = new WPI_TalonSRX(4);
-    public static WPI_TalonSRX backRightWheel = new WPI_TalonSRX(3);
-    public static WPI_TalonSRX backLeftWheel = new WPI_TalonSRX(6);
-
-    public static WPI_TalonSRX testMotor = new WPI_TalonSRX(5);
-    public static CANSparkMax spark = new CANSparkMax(9, MotorType.kBrushless);
-    public static CANSparkMax spark2 = new CANSparkMax(8, MotorType.kBrushless);
-
-    //Sensors
-    public static AnalogInput ultrasonic = new AnalogInput(0);
-
-
     // Xbox
   XboxController xbox = new XboxController(0);
 
@@ -63,6 +48,9 @@ public class RobotContainer {
     //FlyWheel
     new JoystickButton(xbox, 3)
     .whenHeld(new ActivateFlyWheel(.25, m_flyWheelSystem));
+
+    //Ultrasonic
+    new JoystickButton(xbox, 1).whenPressed(new CheckDistance(m_uUltrasonicSystem));
     
   }
 
@@ -72,10 +60,10 @@ public class RobotContainer {
 
 
     public static void init() {
-        frontLeftWheel.configOpenloopRamp(0.5);
-        frontRightWheel.configOpenloopRamp(0.5);
-        backLeftWheel.configOpenloopRamp(0.5);
-        backRightWheel.configOpenloopRamp(0.5);
+        MecanumSystem.frontLeftWheel.configOpenloopRamp(0.5);
+        MecanumSystem.frontRightWheel.configOpenloopRamp(0.5);
+        MecanumSystem.backLeftWheel.configOpenloopRamp(0.5);
+        MecanumSystem.backRightWheel.configOpenloopRamp(0.5);
 
     }
 }

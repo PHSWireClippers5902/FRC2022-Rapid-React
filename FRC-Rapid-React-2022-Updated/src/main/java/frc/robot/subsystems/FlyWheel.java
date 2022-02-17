@@ -6,11 +6,18 @@ import frc.robot.Robot;
 import frc.robot.RobotContainer;
 import frc.robot.commands.ActivateFlyWheel;
 
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
 public class FlyWheel extends SubsystemBase{
+
+    public static CANSparkMax spark = new CANSparkMax(9, MotorType.kBrushless);
+    public static CANSparkMax spark2 = new CANSparkMax(8, MotorType.kBrushless);
   
     public void speed(double speed){
-        RobotContainer.spark.set(speed);
-        RobotContainer.spark2.set(speed * -1);
+        spark.set(speed);
+        spark2.set(speed * -1);
        
     }
 }

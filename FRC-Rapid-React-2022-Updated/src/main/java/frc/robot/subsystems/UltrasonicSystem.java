@@ -5,21 +5,21 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotContainer;
 import edu.wpi.first.wpilibj.RobotController;
 
+import edu.wpi.first.wpilibj.AnalogInput;
+
 public class UltrasonicSystem extends SubsystemBase{
 
     double rawValue;
     double voltage_scale_factor;
     double currentDistanceCentimeters;
-    
 
-    public void initDefaultCommand(){
-
-    }
+    public static AnalogInput ultrasonic = new AnalogInput(0);
 
     public double getDistance(){
-        rawValue = RobotContainer.ultrasonic.getValue();
+        rawValue = ultrasonic.getValue();
         voltage_scale_factor = 5/RobotController.getVoltage5V();
         currentDistanceCentimeters = rawValue * voltage_scale_factor * 0.125;
+        System.out.println("Ultras: " + ultrasonic.getValue());
         return currentDistanceCentimeters;
     }
 }

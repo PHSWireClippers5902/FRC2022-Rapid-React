@@ -21,6 +21,11 @@ public class MecanumSystem extends SubsystemBase {
 
     private double threshold = 0.1;
 
+    public static WPI_TalonSRX frontRightWheel = new WPI_TalonSRX(7);
+    public static WPI_TalonSRX frontLeftWheel = new WPI_TalonSRX(4);
+    public static WPI_TalonSRX backRightWheel = new WPI_TalonSRX(3);
+    public static WPI_TalonSRX backLeftWheel = new WPI_TalonSRX(6);
+
     public void driveWithMecanum(){
 
         double rightTriggerValue = Robot.m_robotContainer.getXbox().getRightTriggerAxis();
@@ -36,38 +41,38 @@ public class MecanumSystem extends SubsystemBase {
 
         if (Math.abs(rightTriggerValue) > threshold || Math.abs(leftStickXValue) > threshold || Math.abs(RightStickXValue) > threshold || Math.abs(leftTriggerValue) > threshold){
             if (Math.abs(rightTriggerValue) > threshold){
-                RobotContainer.frontRightWheel.set(-(forward-x));
-                RobotContainer.frontLeftWheel.set(forward+x);
-                RobotContainer.backRightWheel.set(-(forward-x));
-                RobotContainer.backLeftWheel.set(forward+x);
+                frontRightWheel.set(-(forward-x));
+                frontLeftWheel.set(forward+x);
+                backRightWheel.set(-(forward-x));
+                backLeftWheel.set(forward+x);
             }
             else if (RightStickXValue > threshold){
-                RobotContainer.frontRightWheel.set(sideSpeed);
-                RobotContainer.frontLeftWheel.set(sideSpeed);
-                RobotContainer.backRightWheel.set(-sideSpeed);
-                RobotContainer.backLeftWheel.set(-sideSpeed); 
+                frontRightWheel.set(sideSpeed);
+                frontLeftWheel.set(sideSpeed);
+                backRightWheel.set(-sideSpeed);
+                backLeftWheel.set(-sideSpeed); 
             }else if (RightStickXValue < -threshold){
-                RobotContainer.frontRightWheel.set(-sideSpeed);
-                RobotContainer.frontLeftWheel.set(-sideSpeed);
-                RobotContainer.backRightWheel.set(sideSpeed);
-                RobotContainer.backLeftWheel.set(sideSpeed);
+                frontRightWheel.set(-sideSpeed);
+                frontLeftWheel.set(-sideSpeed);
+                backRightWheel.set(sideSpeed);
+                backLeftWheel.set(sideSpeed);
             }else if (Math.abs(leftTriggerValue) > threshold){
-                RobotContainer.frontRightWheel.set((backward+x));
-                RobotContainer.frontLeftWheel.set(-(backward-x));
-                RobotContainer.backRightWheel.set((backward+x));
-                RobotContainer.backLeftWheel.set(-(backward-x));
+                frontRightWheel.set((backward+x));
+                frontLeftWheel.set(-(backward-x));
+                backRightWheel.set((backward+x));
+                backLeftWheel.set(-(backward-x));
             }
             else if (Math.abs(leftStickXValue) > threshold){
-                RobotContainer.frontRightWheel.set(-(forward-x));
-                RobotContainer.frontLeftWheel.set(forward+x);
-                RobotContainer.backRightWheel.set(-(forward-x));
-                RobotContainer.backLeftWheel.set(forward+x);
+                frontRightWheel.set(-(forward-x));
+                frontLeftWheel.set(forward+x);
+                backRightWheel.set(-(forward-x));
+                backLeftWheel.set(forward+x);
             }
         }else{
-            RobotContainer.frontRightWheel.set(0);
-            RobotContainer.frontLeftWheel.set(0);
-            RobotContainer.backRightWheel.set(0);
-            RobotContainer.backLeftWheel.set(0);
+            frontRightWheel.set(0);
+            frontLeftWheel.set(0);
+            backRightWheel.set(0);
+            backLeftWheel.set(0);
         }
 
         
