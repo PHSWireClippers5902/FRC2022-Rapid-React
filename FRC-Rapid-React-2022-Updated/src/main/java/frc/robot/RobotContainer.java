@@ -24,18 +24,21 @@ import edu.wpi.first.wpilibj.AnalogInput;
 
 public class RobotContainer {
 
-    //initializing subsystems
-    public static MecanumSystem mecanumSystem = new MecanumSystem();
-    public final FlyWheel m_flyWheelSystem = new FlyWheel();
-    public final LinearActuator m_linearActuator = new LinearActuator();
-    public final UltrasonicSystem m_uUltrasonicSystem = new UltrasonicSystem();
+  //initializing subsystems
+  private final FlyWheel m_flyWheelSystem = new FlyWheel();
+  private final LinearActuator m_linearActuator = new LinearActuator();
+  private final UltrasonicSystem m_UltrasonicSystem = new UltrasonicSystem();
+  private final MecanumSystem m_mecanumSystem = new MecanumSystem();
 
-    // Xbox
+  // Xbox
   XboxController xbox = new XboxController(0);
 
   public RobotContainer(){
+    //Default Commands
     m_flyWheelSystem.setDefaultCommand(new ActivateFlyWheel(-.1, m_flyWheelSystem));
     configureButtonBindings();
+    m_mecanumSystem.setDefaultCommand(new DriveWithMecanum(xbox.getLeftY(), xbox.getLeftX(), xbox.getRightTriggerAxis()-xbox.getLeftTriggerAxis() , m_mecanumSystem));
+
   }
   
   private void configureButtonBindings(){ 
@@ -43,14 +46,14 @@ public class RobotContainer {
     //Linear Actuator
     new JoystickButton(xbox, 4)//Y button
     .whileHeld(new ActivateLinearActuator(1.0, m_linearActuator)); //Activates a linear actuator
-    new JoystickButton(xbox, 4).whenReleased(new ActivateLinearActuator(-1.0, m_linearActuator));
+    new JoystickButton(xbox, 4).whenReleased(new ActivateLinearActuator(-0.5, m_linearActuator));
     
     //FlyWheel
     new JoystickButton(xbox, 4)
     .whenHeld(new ActivateFlyWheel(.25, m_flyWheelSystem));
 
     //Ultrasonic
-    new JoystickButton(xbox, 1).whenPressed(new CheckDistance(m_uUltrasonicSystem));
+    new JoystickButton(xbox, 1).whenPressed(new CheckDistance(m_UltrasonicSystem));
     
   }
 
@@ -58,12 +61,4 @@ public class RobotContainer {
     return xbox;
   }
 
-
-    public static void init() {
-        MecanumSystem.frontLeftWheel.configOpenloopRamp(0.5);
-        MecanumSystem.frontRightWheel.configOpenloopRamp(0.5);
-        MecanumSystem.backLeftWheel.configOpenloopRamp(0.5);
-        MecanumSystem.backRightWheel.configOpenloopRamp(0.5);
-
-    }
 }
