@@ -46,7 +46,7 @@ public class RobotContainer {
     new JoystickButton(xbox, 4).whenReleased(new ActivateLinearActuator(-1.0, m_linearActuator));
     
     //FlyWheel
-    new JoystickButton(xbox, 3)
+    new JoystickButton(xbox, 4)
     .whenHeld(new ActivateFlyWheel(.25, m_flyWheelSystem));
 
     //Ultrasonic
