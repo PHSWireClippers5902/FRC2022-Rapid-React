@@ -58,7 +58,9 @@ public class RobotContainer {
 
     //Aim
     new JoystickButton(xbox, 2).toggleWhenPressed(new StartEndCommand(
-      onInit, onEnd, requirements))
+      () -> {m_aimSystem.aimTo(AimSystem.MotorUpPosition);},
+      () -> {m_aimSystem.aimTo(AimSystem.MotorDownPosition);},
+      m_aimSystem));
     
   }
 

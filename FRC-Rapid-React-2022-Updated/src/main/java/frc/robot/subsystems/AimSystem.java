@@ -12,7 +12,13 @@ public class AimSystem extends SubsystemBase{
     private SparkMaxPIDController m_pidController;
     private RelativeEncoder m_encoder;
     //Put these in constants file
-    public double kP, kI, kD, kIz, kFF, kMaxOutput, kMinOutput;
+    private double kP, kI, kD, kIz, kFF, kMaxOutput, kMinOutput;
+    //I do not like this
+    //This should not be here
+    //Please please get rid of this I hate it, it is violating my programming integrity
+    public static double MotorUpPosition = .1;
+    public static double MotorDownPosition = .05;
+    
     
 
     public AimSystem(){
