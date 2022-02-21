@@ -47,6 +47,10 @@ public class AimSystem extends SubsystemBase{
         m_pidController.setReference(position, CANSparkMax.ControlType.kPosition);
     }
 
+    public void resetPosition(){
+        m_encoder.setPosition(0);
+    }
+
     public double getPosition(){
         return m_encoder.getPosition();
     }
