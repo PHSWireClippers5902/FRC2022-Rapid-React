@@ -9,11 +9,12 @@ import frc.robot.commands.ActivateFlyWheel;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import static frc.robot.Constants.FlyWheelConstants;
 
 public class FlyWheel extends SubsystemBase{
 
-    public static CANSparkMax spark = new CANSparkMax(9, MotorType.kBrushless);
-    public static CANSparkMax spark2 = new CANSparkMax(8, MotorType.kBrushless);
+    public static CANSparkMax spark = new CANSparkMax(FlyWheelConstants.motorOnePort, MotorType.kBrushless);
+    public static CANSparkMax spark2 = new CANSparkMax(FlyWheelConstants.motorTwoPort, MotorType.kBrushless);
   
     public void speed(double speed){
         spark.set(speed);

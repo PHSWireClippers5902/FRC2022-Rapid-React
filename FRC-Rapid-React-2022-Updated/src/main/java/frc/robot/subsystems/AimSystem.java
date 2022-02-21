@@ -4,43 +4,30 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkMaxPIDController;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;    
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import static frc.robot.Constants.AimConstants;
+
 
 public class AimSystem extends SubsystemBase{
 
     private CANSparkMax m_motor;
     private SparkMaxPIDController m_pidController;
     private RelativeEncoder m_encoder;
-    //Put these in constants file
-    private double kP, kI, kD, kIz, kFF, kMaxOutput, kMinOutput;
-    //I do not like this
-    //This should not be here
-    //Please please get rid of this I hate it, it is violating my programming integrity
-    public static double MotorUpPosition = .1;
-    public static double MotorDownPosition = .05;
-    
     
 
     public AimSystem(){
-        m_motor = new CANSparkMax(8, MotorType.kBrushless);
+        m_motor = new CANSparkMax(AimConstants.aimMotorPort, MotorType.kBrushless);
         m_motor.restoreFactoryDefaults();
         //set position to 0 somewhere?
         m_pidController = m_motor.getPIDController();
         m_encoder = m_motor.getEncoder();
-        kP = 0.1; 
-        kI = 1e-4;
-        kD = 1; 
-        kIz = 0; 
-        kFF = 0; 
-        kMaxOutput = 1; 
-        kMinOutput = -1;
         
-        m_pidController.setP(kP);
-        m_pidController.setI(kI);
-        m_pidController.setD(kD);
-        m_pidController.setIZone(kIz);
-        m_pidController.setFF(kFF);
-        m_pidController.setOutputRange(kMinOutput, kMaxOutput);
+        m_pidController.setP(AimConstants.P);
+        m_pidController.setI(AimConstants.I);
+        m_pidController.setD(AimConstants.D);
+        m_pidController.setIZone(AimConstants.Iz);
+        m_pidController.setFF(AimConstants.FF);
+        m_pidController.setOutputRange(AimConstants.MinOutput, AimConstants.MaxOutput);
     }
 
     public void aimTo(double position){

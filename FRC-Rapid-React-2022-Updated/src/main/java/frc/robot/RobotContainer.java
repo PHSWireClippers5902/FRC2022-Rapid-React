@@ -16,11 +16,14 @@ import edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.StartEndCommand;
-// import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+
+import static frc.robot.Constants.ControllerConstants;
+import static frc.robot.Constants.AimConstants;
+
 
 import edu.wpi.first.wpilibj.AnalogInput;
 
@@ -34,7 +37,7 @@ public class RobotContainer {
     private final AimSystem m_aimSystem = new AimSystem();
 
     // Xbox
-  XboxController xbox = new XboxController(0);
+    XboxController xbox = new XboxController(ControllerConstants.ControllerPort);
 
   public RobotContainer(){
     m_flyWheelSystem.setDefaultCommand(new ActivateFlyWheel(-.1, m_flyWheelSystem));
@@ -43,25 +46,22 @@ public class RobotContainer {
   }
   
   private void configureButtonBindings(){ 
-    //Put button number -> button in constants files?
     //Linear Actuator
-    new JoystickButton(xbox, 4)//Y button
-    .whileHeld(new ActivateLinearActuator(1.0, m_linearActuator)); //Activates a linear actuator
-    new JoystickButton(xbox, 4).whenReleased(new ActivateLinearActuator(-1.0, m_linearActuator));
-    
-    //FlyWheel
-    new JoystickButton(xbox, 4)
+    new JoystickButton(xbox, ControllerConstants.Y)
+    .whileHeld(new ActivateLinearActuator(1.0, m_linearActuator))
+    .whenReleased(new ActivateLinearActuator(-1.0, m_linearActuator))
     .whenHeld(new ActivateFlyWheel(.25, m_flyWheelSystem));
 
     //Ultrasonic
-    new JoystickButton(xbox, 1).whenPressed(new CheckDistance(m_uUltrasonicSystem));
+    new JoystickButton(xbox, ControllerConstants.A)
+    .whenPressed(new CheckDistance(m_uUltrasonicSystem));
 
     //Aim
-    new JoystickButton(xbox, 2).toggleWhenPressed(new StartEndCommand(
-      () -> {m_aimSystem.aimTo(AimSystem.MotorUpPosition);},
-      () -> {m_aimSystem.aimTo(AimSystem.MotorDownPosition);},
+    new JoystickButton(xbox, ControllerConstants.B)
+    .toggleWhenPressed(new StartEndCommand(
+      () -> {m_aimSystem.aimTo(AimConstants.MotorUpPosition);},
+      () -> {m_aimSystem.aimTo(AimConstants.MotorDownPosition);},
       m_aimSystem));
-    
   }
 
   public XboxController getXbox() {
