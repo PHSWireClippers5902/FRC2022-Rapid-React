@@ -18,9 +18,9 @@ public class AimSystem extends SubsystemBase{
     public AimSystem(){
         m_motor = new CANSparkMax(AimConstants.aimMotorPort, MotorType.kBrushless);
         m_motor.restoreFactoryDefaults();
-        //set position to 0 somewhere?
         m_pidController = m_motor.getPIDController();
         m_encoder = m_motor.getEncoder();
+        m_encoder.setPosition(0);
         
         m_pidController.setP(AimConstants.P);
         m_pidController.setI(AimConstants.I);
@@ -36,6 +36,10 @@ public class AimSystem extends SubsystemBase{
 
     public void resetPosition(){
         m_encoder.setPosition(0);
+    }
+
+    public void disableMotor(){
+        m_motor.disable();
     }
 
     public double getPosition(){
