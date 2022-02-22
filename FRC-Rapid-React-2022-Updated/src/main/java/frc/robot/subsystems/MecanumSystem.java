@@ -21,10 +21,17 @@ public class MecanumSystem extends SubsystemBase {
 
     private double threshold = 0.1;
 
-    public static WPI_TalonSRX frontRightWheel = new WPI_TalonSRX(7);
-    public static WPI_TalonSRX frontLeftWheel = new WPI_TalonSRX(4);
-    public static WPI_TalonSRX backRightWheel = new WPI_TalonSRX(3);
-    public static WPI_TalonSRX backLeftWheel = new WPI_TalonSRX(6);
+    private final WPI_TalonSRX frontRightWheel = new WPI_TalonSRX(7);
+    private final WPI_TalonSRX frontLeftWheel = new WPI_TalonSRX(4);
+    private final WPI_TalonSRX backRightWheel = new WPI_TalonSRX(3);
+    private final WPI_TalonSRX backLeftWheel = new WPI_TalonSRX(6);
+
+    public MecanumSystem(){
+        frontLeftWheel.configOpenloopRamp(0.5);
+        frontRightWheel.configOpenloopRamp(0.5);
+        backLeftWheel.configOpenloopRamp(0.5);
+        backRightWheel.configOpenloopRamp(0.5);
+    }
 
     public void driveWithMecanum(){
 

@@ -40,7 +40,6 @@ public class Robot extends TimedRobot {
   public static boolean disabled;
   public static RobotContainer m_robotContainer;
 
-
   
   /**
    * This function is run when the robot is first started up and should be used
@@ -55,7 +54,8 @@ public class Robot extends TimedRobot {
     m_chooser.addOption("My Auto", kCustomAuto);
     //SmartDashboard.putData("Auto choices", m_chooser);
     System.out.println("Robot Init - NOW");
-    RobotContainer.init();
+    //We do not currently have anything we need to run in robot container init
+    //RobotContainer.init();
 
 
   }
@@ -75,6 +75,8 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
       CommandScheduler.getInstance().run();
+      //Testing pid motor overshoot 
+      //System.out.println(m_robotContainer.m_aimSystem.getPosition());
   }
 
   /**
@@ -109,8 +111,6 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopInit() {
     //RobotContainer.lightSystem.getAllianceColor();
-    
-
    }
 
   /**
@@ -119,7 +119,6 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     //driveTrain.driveWithXbox();
-    RobotContainer.mecanumSystem.driveWithMecanum();
     //RobotContainer.actuatorTest.setSpeed(.1);
     //set angle also gives some weird results
     //System.out.println(RobotContainer.actuatorTest.getAngle());
