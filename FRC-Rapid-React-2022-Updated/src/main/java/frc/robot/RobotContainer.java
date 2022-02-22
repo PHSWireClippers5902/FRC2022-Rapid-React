@@ -11,6 +11,7 @@ import frc.robot.subsystems.*;
 import frc.robot.commands.*;
 
 import edu.wpi.first.wpilibj.XboxController.Button;
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.XboxController;
 // import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -26,6 +27,7 @@ public class RobotContainer {
     public final FlyWheel m_flyWheelSystem = new FlyWheel();
     public final SparkTest m_SparkTest = new SparkTest();
     public final LinearActuator m_linearActuator = new LinearActuator();
+    public final ServoSystem m_servo = new ServoSystem();
 
     //creating motor controllers
     public static WPI_TalonSRX frontRightWheel = new WPI_TalonSRX(7);
@@ -37,7 +39,8 @@ public class RobotContainer {
 
     public static Spark sparkTestMotor = new Spark(8);
 
-    public static Servo actuatorTest = new Servo(1); //Temp ID change to servo id on roboRio
+    public static Servo actuatorTest = new Servo(2); //Temp ID change to servo id on roboRio
+    public static Servo ballServo = new Servo(1);
 
     //public static SpeedController lightsR;
     //public static SpeedController lightsL;
@@ -48,15 +51,27 @@ public class RobotContainer {
 
   public RobotContainer(){
     configureButtonBindings();
+   
   }
   
+
+
   private void configureButtonBindings(){ 
-    new JoystickButton(xbox, 3)//X button
+    //new JoystickButton(xbox, 3)//X button
     //.whenPressed(new ActivateFlyWheel(.5, m_flyWheelSystem));
-    .whenPressed(new ActivateLinearActuator(0.0, m_linearActuator)); //Activates a linear actuator
+    //.whenPressed(new ActivateLinearActuator(0.0, m_linearActuator)); //Activates a linear actuator
+    //.whenPressed(new ActivateServo(0, m_servo));
+    
     new JoystickButton(xbox, 1)//A button
-    .whenPressed(new ActivateSpark(.5, m_SparkTest));
+    .whileHeld(new ActivateServo(90, m_servo)); //sets angle to 90 this value will be reset to zero after called.
+    
+    new JoystickButton(xbox, 1)
+    .whenReleased(new ActivateServo(0, m_servo));
   }
+
+    
+
+  // when pressed go = !go
 
   public XboxController getXbox() {
     return xbox;

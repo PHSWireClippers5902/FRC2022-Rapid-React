@@ -18,7 +18,7 @@ public class LinearActuator extends SubsystemBase{
         //RobotContainer.actuatorTest.setAngle(amount);
         
         RobotContainer.actuatorTest.setAngle(amount);
-        System.out.println("Angle" + RobotContainer.actuatorTest.getAngle());
+        //System.out.println("Angle" + RobotContainer.actuatorTest.getAngle());
     
     }
     

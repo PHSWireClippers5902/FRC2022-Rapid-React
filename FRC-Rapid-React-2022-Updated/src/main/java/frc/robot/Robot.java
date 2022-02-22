@@ -111,7 +111,7 @@ public class Robot extends TimedRobot {
     RobotContainer.mecanumSystem.driveWithMecanum();
     RobotContainer.actuatorTest.setSpeed(.1);
     //set angle also gives some weird results
-    System.out.println(RobotContainer.actuatorTest.getAngle());
+    
     
    // RobotMap.topSolenoid.set(false);
     //RobotMap.frontSolenoid.set(false);
