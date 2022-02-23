@@ -24,6 +24,7 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 import static frc.robot.Constants.ControllerConstants;
 import static frc.robot.Constants.AimConstants;
+import static frc.robot.Constants.ClimbConstants;
 
 
 import edu.wpi.first.wpilibj.AnalogInput;
@@ -36,7 +37,7 @@ public class RobotContainer {
     private final LinearActuator m_linearActuator = new LinearActuator();
     private final UltrasonicSystem m_uUltrasonicSystem = new UltrasonicSystem();
     private final AimSystem m_aimSystem = new AimSystem();
-
+    private final ClimbSystem m_climbSystem = new ClimbSystem();    
     // Xbox
     XboxController xbox = new XboxController(ControllerConstants.ControllerPort);
 
@@ -47,6 +48,7 @@ public class RobotContainer {
   }
   
   private void configureButtonBindings(){ 
+    
     //Linear Actuator
     new JoystickButton(xbox, ControllerConstants.Y)
     .whileHeld(new ActivateLinearActuator(1.0, m_linearActuator))
@@ -63,6 +65,13 @@ public class RobotContainer {
       () -> {m_aimSystem.aimTo(AimConstants.MotorUpPosition);},
       () -> {m_aimSystem.aimTo(AimConstants.MotorDownPosition);},
       m_aimSystem));
+    
+    //Climb arm
+    new JoystickButton(xbox, ControllerConstants.LeftButton)
+    .toggleWhenPressed(new StartEndCommand(
+      () -> {m_climbSystem.moveTo(ClimbConstants.MotorUpPosition);},
+      () -> {m_climbSystem.moveTo(ClimbConstants.MotorDownPosition);},
+      m_climbSystem));
   }
 
   public XboxController getXbox() {
