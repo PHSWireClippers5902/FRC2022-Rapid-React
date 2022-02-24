@@ -22,7 +22,7 @@ public class AimSystem extends SubsystemBase{
         m_pidController = m_motor.getPIDController();
         m_encoder = m_motor.getEncoder();
         m_encoder.setPosition(0);
-        setSoftLimits();
+        //setSoftLimits();
         configurePID();
     }
 

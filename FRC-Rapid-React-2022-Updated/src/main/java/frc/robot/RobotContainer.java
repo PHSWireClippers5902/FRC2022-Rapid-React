@@ -42,7 +42,7 @@ public class RobotContainer {
     XboxController xbox = new XboxController(ControllerConstants.ControllerPort);
 
   public RobotContainer(){
-    m_flyWheelSystem.setDefaultCommand(new ActivateFlyWheel(-.1, m_flyWheelSystem));
+    m_flyWheelSystem.setDefaultCommand(new ActivateFlyWheel(.1, m_flyWheelSystem));
     m_mecanumSystem.setDefaultCommand(new RunCommand(m_mecanumSystem::driveWithMecanum, m_mecanumSystem));
     configureButtonBindings();
   }
@@ -52,8 +52,8 @@ public class RobotContainer {
     //Linear Actuator
     new JoystickButton(xbox, ControllerConstants.Y)
     .whileHeld(new ActivateLinearActuator(1.0, m_linearActuator))
-    .whenReleased(new ActivateLinearActuator(-1.0, m_linearActuator))
-    .whenHeld(new ActivateFlyWheel(.25, m_flyWheelSystem));
+    .whenReleased(new ActivateLinearActuator(-0.5, m_linearActuator))
+    .whenHeld(new ActivateFlyWheel(-0.75, m_flyWheelSystem));
 
     //Ultrasonic
     new JoystickButton(xbox, ControllerConstants.A)
@@ -62,8 +62,8 @@ public class RobotContainer {
     //Aim
     new JoystickButton(xbox, ControllerConstants.B)
     .toggleWhenPressed(new StartEndCommand(
-      () -> {m_aimSystem.aimTo(AimConstants.MotorUpPosition);},
       () -> {m_aimSystem.aimTo(AimConstants.MotorDownPosition);},
+      () -> {m_aimSystem.aimTo(AimConstants.MotorUpPosition);},
       m_aimSystem));
     
     //Climb arm

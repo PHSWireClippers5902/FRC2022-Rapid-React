@@ -29,7 +29,7 @@ public class ClimbSystem extends SubsystemBase{
     }
     private void setSoftLimits(){
         m_motor.enableSoftLimit(SoftLimitDirection.kReverse, true);
-        m_motor.setSoftLimit(SoftLimitDirection.kReverse, (ClimbConstants.MotorDownPosition-2));
+        m_motor.setSoftLimit(SoftLimitDirection.kReverse, (ClimbConstants.MotorDownPosition));
         m_motor.enableSoftLimit(SoftLimitDirection.kForward, true);
         m_motor.setSoftLimit(SoftLimitDirection.kForward, (ClimbConstants.MotorUpPosition+2));
     }
