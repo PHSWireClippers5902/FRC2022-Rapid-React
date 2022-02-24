@@ -22,15 +22,16 @@ public class ClimbSystem extends SubsystemBase{
         m_pidController = m_motor.getPIDController();
         m_encoder = m_motor.getEncoder();
         m_encoder.setPosition(0);
-        m_encoder.setPositionConversionFactor(ClimbConstants.PostionConversionFactor);
+        //who needs precision anyway??
+        //m_encoder.setPositionConversionFactor(ClimbConstants.PostionConversionFactor);
         setSoftLimits();
         configurePID();
     }
     private void setSoftLimits(){
         m_motor.enableSoftLimit(SoftLimitDirection.kReverse, true);
-        m_motor.setSoftLimit(SoftLimitDirection.kReverse, ClimbConstants.MotorDownPosition);
+        m_motor.setSoftLimit(SoftLimitDirection.kReverse, (ClimbConstants.MotorDownPosition-2));
         m_motor.enableSoftLimit(SoftLimitDirection.kForward, true);
-        m_motor.setSoftLimit(SoftLimitDirection.kForward, ClimbConstants.MotorUpPosition);
+        m_motor.setSoftLimit(SoftLimitDirection.kForward, (ClimbConstants.MotorUpPosition+2));
     }
     private void configurePID(){
         m_pidController.setP(ClimbConstants.P);
@@ -45,15 +46,15 @@ public class ClimbSystem extends SubsystemBase{
         m_pidController.setReference(position, CANSparkMax.ControlType.kPosition);
     }
 
-    public void resetPosition(){
-        m_encoder.setPosition(0);
-    }
-
     public void disableMotor(){
         m_motor.disable();
     }
 
     public double getPosition(){
         return m_encoder.getPosition();
+    }
+
+    public void setSpeed(double speed){
+        m_motor.set(speed);
     }
 }

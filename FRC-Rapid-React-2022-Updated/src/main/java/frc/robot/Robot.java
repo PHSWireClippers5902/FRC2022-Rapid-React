@@ -75,8 +75,6 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
       CommandScheduler.getInstance().run();
-      //Testing pid motor overshoot 
-      //System.out.println(m_robotContainer.m_aimSystem.getPosition());
   }
 
   /**

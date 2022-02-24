@@ -72,6 +72,15 @@ public class RobotContainer {
       () -> {m_climbSystem.moveTo(ClimbConstants.MotorUpPosition);},
       () -> {m_climbSystem.moveTo(ClimbConstants.MotorDownPosition);},
       m_climbSystem));
+    
+    /*
+    new JoystickButton(xbox, ControllerConstants.LeftButton)
+    .whenPressed(() -> {m_climbSystem.setSpeed(0.1);}, m_climbSystem);
+    new JoystickButton(xbox, ControllerConstants.RightButton)
+    .whenPressed(() -> {m_climbSystem.setSpeed(-0.1);}, m_climbSystem);
+    new JoystickButton(xbox, ControllerConstants.A)
+    .whenPressed(() -> {m_climbSystem.setSpeed(0.0);}, m_climbSystem);
+    */
   }
 
   public XboxController getXbox() {

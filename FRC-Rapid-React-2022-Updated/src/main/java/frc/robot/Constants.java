@@ -21,16 +21,17 @@ public final class Constants{
   }
   public static final class ClimbConstants{
     public static final int climbMotorPort = 10;
-    public static final double P = 0.1; 
+    public static final double P = 0.15; 
     public static final double I = 1e-4;
     public static final double D = 0; 
     public static final double Iz = 0; 
     public static final double FF = 0; 
     public static final double MaxOutput = .2; 
     public static final double MinOutput = -.2;
-    public static final float MotorUpPosition = 2;
+    public static final float MotorUpPosition = 46;
     public static final float MotorDownPosition = 0;
-    public static final double PostionConversionFactor = 2;
+    //Don't use this maybe??? who knowwss? Cruunch
+    //public static final double PostionConversionFactor = 2;
 }
   public static final class ControllerConstants {
       public static final int A = 1;
