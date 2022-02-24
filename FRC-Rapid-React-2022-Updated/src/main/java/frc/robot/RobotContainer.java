@@ -14,6 +14,7 @@ import frc.robot.commands.*;
 
 import edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 // import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj.Joystick;
@@ -37,7 +38,8 @@ public class RobotContainer {
     //Default Commands
     m_flyWheelSystem.setDefaultCommand(new ActivateFlyWheel(-.1, m_flyWheelSystem));
     configureButtonBindings();
-    m_mecanumSystem.setDefaultCommand(new DriveWithMecanum(xbox.getLeftY(), xbox.getLeftX(), xbox.getRightTriggerAxis()-xbox.getLeftTriggerAxis() , m_mecanumSystem));
+    m_mecanumSystem.setDefaultCommand(new DriveWithMecanum(xbox, m_mecanumSystem));
+    m_UltrasonicSystem.setDefaultCommand(new CheckDistance(m_UltrasonicSystem));
 
   }
   

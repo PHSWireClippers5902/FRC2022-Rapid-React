@@ -1,4 +1,6 @@
 package frc.robot.commands;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.UltrasonicSystem;
@@ -13,8 +15,8 @@ public class CheckDistance extends CommandBase {
   }
 
   @Override
-  public void initialize() {
-    System.out.println("Distance " + m_ultrasonicSystem.getDistance());
+  public void execute() {
+    SmartDashboard.putNumber("Ultrasonic", m_ultrasonicSystem.getDistance());
   }
 
   @Override
