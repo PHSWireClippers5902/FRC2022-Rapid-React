@@ -54,10 +54,6 @@ public class Robot extends TimedRobot {
     m_chooser.addOption("My Auto", kCustomAuto);
     //SmartDashboard.putData("Auto choices", m_chooser);
     System.out.println("Robot Init - NOW");
-    //We do not currently have anything we need to run in robot container init
-    //RobotContainer.init();
-
-
   }
 
   /**
@@ -116,14 +112,6 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
-    //driveTrain.driveWithXbox();
-    //RobotContainer.actuatorTest.setSpeed(.1);
-    //set angle also gives some weird results
-    //System.out.println(RobotContainer.actuatorTest.getAngle());
-    
-   // RobotMap.topSolenoid.set(false);
-    //RobotMap.frontSolenoid.set(false);
-    //RobotMap.backSolenoid.set(false);
   }
   
 

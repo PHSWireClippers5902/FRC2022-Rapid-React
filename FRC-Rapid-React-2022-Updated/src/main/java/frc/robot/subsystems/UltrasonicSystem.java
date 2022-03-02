@@ -19,7 +19,6 @@ public class UltrasonicSystem extends SubsystemBase{
         rawValue = ultrasonic.getValue();
         voltage_scale_factor = 5/RobotController.getVoltage5V();
         currentDistanceCentimeters = rawValue * voltage_scale_factor * 0.125;
-        System.out.println("Ultras: " + ultrasonic.getValue());
         return currentDistanceCentimeters;
     }
 }

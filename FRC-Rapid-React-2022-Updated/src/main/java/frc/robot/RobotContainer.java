@@ -37,19 +37,22 @@ public class RobotContainer {
     private final LinearActuator m_linearActuator = new LinearActuator();
     private final UltrasonicSystem m_uUltrasonicSystem = new UltrasonicSystem();
     private final AimSystem m_aimSystem = new AimSystem();
-    private final ClimbSystem m_climbSystem = new ClimbSystem();    
+    private final ClimbSystem m_climbSystem = new ClimbSystem();
+  
     // Xbox
     XboxController xbox = new XboxController(ControllerConstants.ControllerPort);
 
   public RobotContainer(){
+    //Default Commands
     m_flyWheelSystem.setDefaultCommand(new ActivateFlyWheel(-.1, m_flyWheelSystem));
-    m_mecanumSystem.setDefaultCommand(new RunCommand(m_mecanumSystem::driveWithMecanum, m_mecanumSystem));
     configureButtonBindings();
+    m_mecanumSystem.setDefaultCommand(new DriveWithMecanum(xbox, m_mecanumSystem));
+    m_UltrasonicSystem.setDefaultCommand(new CheckDistance(m_UltrasonicSystem));
+
   }
   
   private void configureButtonBindings(){ 
-    
-    //Linear Actuator
+
     new JoystickButton(xbox, ControllerConstants.Y)
     .whileHeld(new ActivateLinearActuator(1.0, m_linearActuator))
     .whenReleased(new ActivateLinearActuator(-1.0, m_linearActuator))
@@ -73,17 +76,10 @@ public class RobotContainer {
       () -> {m_climbSystem.moveTo(ClimbConstants.MotorDownPosition);},
       m_climbSystem));
     
-    /*
-    new JoystickButton(xbox, ControllerConstants.LeftButton)
-    .whenPressed(() -> {m_climbSystem.setSpeed(0.1);}, m_climbSystem);
-    new JoystickButton(xbox, ControllerConstants.RightButton)
-    .whenPressed(() -> {m_climbSystem.setSpeed(-0.1);}, m_climbSystem);
-    new JoystickButton(xbox, ControllerConstants.A)
-    .whenPressed(() -> {m_climbSystem.setSpeed(0.0);}, m_climbSystem);
-    */
   }
 
   public XboxController getXbox() {
     return xbox;
   }
+
 }
