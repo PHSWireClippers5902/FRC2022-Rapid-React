@@ -15,24 +15,32 @@ import frc.robot.commands.*;
 import edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-// import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj2.command.RunCommand;
+import edu.wpi.first.wpilibj2.command.StartEndCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
+import static frc.robot.Constants.ControllerConstants;
+import static frc.robot.Constants.AimConstants;
+import static frc.robot.Constants.ClimbConstants;
+
+
 import edu.wpi.first.wpilibj.AnalogInput;
 
 public class RobotContainer {
 
-  //initializing subsystems
-  private final FlyWheel m_flyWheelSystem = new FlyWheel();
-  private final LinearActuator m_linearActuator = new LinearActuator();
-  private final UltrasonicSystem m_UltrasonicSystem = new UltrasonicSystem();
-  private final MecanumSystem m_mecanumSystem = new MecanumSystem();
-
-  // Xbox
-  XboxController xbox = new XboxController(0);
+    //initializing subsystems
+    private final MecanumSystem m_mecanumSystem = new MecanumSystem();
+    private final FlyWheel m_flyWheelSystem = new FlyWheel();
+    private final LinearActuator m_linearActuator = new LinearActuator();
+    private final UltrasonicSystem m_uUltrasonicSystem = new UltrasonicSystem();
+    private final AimSystem m_aimSystem = new AimSystem();
+    private final ClimbSystem m_climbSystem = new ClimbSystem();
+  
+    // Xbox
+    XboxController xbox = new XboxController(ControllerConstants.ControllerPort);
 
   public RobotContainer(){
     //Default Commands
@@ -44,18 +52,29 @@ public class RobotContainer {
   }
   
   private void configureButtonBindings(){ 
-    
-    //Linear Actuator
-    new JoystickButton(xbox, 4)//Y button
-    .whileHeld(new ActivateLinearActuator(1.0, m_linearActuator)); //Activates a linear actuator
-    new JoystickButton(xbox, 4).whenReleased(new ActivateLinearActuator(-0.5, m_linearActuator));
-    
-    //FlyWheel
-    new JoystickButton(xbox, 4)
+
+    new JoystickButton(xbox, ControllerConstants.Y)
+    .whileHeld(new ActivateLinearActuator(1.0, m_linearActuator))
+    .whenReleased(new ActivateLinearActuator(-1.0, m_linearActuator))
     .whenHeld(new ActivateFlyWheel(.25, m_flyWheelSystem));
 
     //Ultrasonic
-    new JoystickButton(xbox, 1).whenPressed(new CheckDistance(m_UltrasonicSystem));
+    new JoystickButton(xbox, ControllerConstants.A)
+    .whenPressed(new CheckDistance(m_uUltrasonicSystem));
+
+    //Aim
+    new JoystickButton(xbox, ControllerConstants.B)
+    .toggleWhenPressed(new StartEndCommand(
+      () -> {m_aimSystem.aimTo(AimConstants.MotorUpPosition);},
+      () -> {m_aimSystem.aimTo(AimConstants.MotorDownPosition);},
+      m_aimSystem));
+    
+    //Climb arm
+    new JoystickButton(xbox, ControllerConstants.LeftButton)
+    .toggleWhenPressed(new StartEndCommand(
+      () -> {m_climbSystem.moveTo(ClimbConstants.MotorUpPosition);},
+      () -> {m_climbSystem.moveTo(ClimbConstants.MotorDownPosition);},
+      m_climbSystem));
     
   }
 

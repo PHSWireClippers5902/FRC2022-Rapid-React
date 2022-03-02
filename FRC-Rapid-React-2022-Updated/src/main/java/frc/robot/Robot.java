@@ -40,7 +40,6 @@ public class Robot extends TimedRobot {
   public static boolean disabled;
   public static RobotContainer m_robotContainer;
 
-
   
   /**
    * This function is run when the robot is first started up and should be used
@@ -55,7 +54,6 @@ public class Robot extends TimedRobot {
     m_chooser.addOption("My Auto", kCustomAuto);
     //SmartDashboard.putData("Auto choices", m_chooser);
     System.out.println("Robot Init - NOW");
-
   }
 
   /**
@@ -107,8 +105,6 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopInit() {
     //RobotContainer.lightSystem.getAllianceColor();
-    
-
    }
 
   /**
@@ -119,7 +115,7 @@ public class Robot extends TimedRobot {
   }
   
 
-  /**
+  /*
    * This function is called periodically during test mode.
    */
   @Override
