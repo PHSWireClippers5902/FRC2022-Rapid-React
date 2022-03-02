@@ -2,9 +2,9 @@ package frc.robot;
 
 public final class Constants{
   public static final class WheelConstants{
-      public static final int frontLeftMotorPort = 4;
-      public static final int backLeftMotorPort = 6;
-      public static final int frontRightMotorPort = 7;
+      public static final int frontLeftMotorPort = 1;
+      public static final int backLeftMotorPort = 2;
+      public static final int frontRightMotorPort = 4;
       public static final int backRightMotorPort = 3;
   }
   public static final class AimConstants{

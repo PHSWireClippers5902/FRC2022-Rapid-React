@@ -35,7 +35,7 @@ public class RobotContainer {
     private final MecanumSystem m_mecanumSystem = new MecanumSystem();
     private final FlyWheel m_flyWheelSystem = new FlyWheel();
     private final LinearActuator m_linearActuator = new LinearActuator();
-    private final UltrasonicSystem m_uUltrasonicSystem = new UltrasonicSystem();
+    private final UltrasonicSystem m_UltrasonicSystem = new UltrasonicSystem();
     private final AimSystem m_aimSystem = new AimSystem();
     private final ClimbSystem m_climbSystem = new ClimbSystem();
   
@@ -60,7 +60,7 @@ public class RobotContainer {
 
     //Ultrasonic
     new JoystickButton(xbox, ControllerConstants.A)
-    .whenPressed(new CheckDistance(m_uUltrasonicSystem));
+    .whenPressed(new CheckDistance(m_UltrasonicSystem));
 
     //Aim
     new JoystickButton(xbox, ControllerConstants.B)
