@@ -52,21 +52,20 @@ public class RobotContainer {
 
 
   private void configureButtonBindings(){ 
-    new JoystickButton(xbox, 3)//X button
-    .whenPressed(new ActivateHookServo(35, m_servo));
+    //Locks Climb
+    new JoystickButton(xbox, ControllerConstants.X)
+    .whenPressed(new InstantCommand(() -> {m_servo.changeHookServo(35);}, m_servo));
     
-    new JoystickButton(xbox, ControllerConstants.A)//A button
-    .whileHeld(new ActivateBallServo(90, m_servo)); //sets angle to 90 this value will be reset to zero after called.
-    .whenReleased(new ActivateBallServo(0, m_servo));
+    //Ball Collection Hook
+    new JoystickButton(xbox, ControllerConstants.A)
+    .whileHeld(new InstantCommand(() -> {m_servo.changeBallServo(90);}, m_servo))
+    .whenReleased(new InstantCommand(() -> {m_servo.changeBallServo(0);}, m_servo));//sets angle to 90 this value will be reset to zero after called.
 
+    //Shoots Ball
     new JoystickButton(xbox, ControllerConstants.Y)
     .whileHeld(new ActivateLinearActuator(1.0, m_linearActuator))
     .whenReleased(new ActivateLinearActuator(-0.5, m_linearActuator))
     .whenHeld(new ActivateFlyWheel(-0.75, m_flyWheelSystem));
-
-    //Ultrasonic
-    new JoystickButton(xbox, ControllerConstants.A)
-    .whenPressed(new CheckDistance(m_UltrasonicSystem));
 
     //Aim
     new JoystickButton(xbox, ControllerConstants.B)
@@ -83,10 +82,6 @@ public class RobotContainer {
       m_climbSystem));
     
   }
-
-    
-
-  // when pressed go = !go
 
   public XboxController getXbox() {
     return xbox;

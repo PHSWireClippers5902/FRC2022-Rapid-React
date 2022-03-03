@@ -49,4 +49,8 @@ public final class Constants{
   public static final class LinearActuatorConstants{
       public static final int ServoChannel = 1;    
   }
+  public static final class ServoConstants{
+      public static final int HookServoPort = 0;
+      public static final int BallServoPort = 2;
+  }
 }
