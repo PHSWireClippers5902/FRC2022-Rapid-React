@@ -7,11 +7,11 @@ import frc.robot.subsystems.LinearActuator;
 import frc.robot.subsystems.ServoSystem;
 import frc.robot.RobotContainer;
 
-public class ActivateServo extends CommandBase {
+public class ActivateBallServo extends CommandBase {
     public final ServoSystem m_servo;
     public double amount;
 
-    public ActivateServo(double amount, ServoSystem subSystem){
+    public ActivateBallServo(double amount, ServoSystem subSystem){
         m_servo = subSystem;
         addRequirements(m_servo);
         this.amount = amount;
@@ -20,7 +20,7 @@ public class ActivateServo extends CommandBase {
 
     @Override
     public void initialize() {
-        m_servo.change(amount);
+        m_servo.changeBallServo(amount);
         //System.out.println("gogogooooogogo" + amount);
     }
     @Override

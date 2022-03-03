@@ -40,7 +40,8 @@ public class RobotContainer {
     public static Spark sparkTestMotor = new Spark(8);
 
     public static Servo actuatorTest = new Servo(2); //Temp ID change to servo id on roboRio
-    public static Servo ballServo = new Servo(1);
+    
+
 
     //public static SpeedController lightsR;
     //public static SpeedController lightsL;
@@ -57,16 +58,17 @@ public class RobotContainer {
 
 
   private void configureButtonBindings(){ 
-    //new JoystickButton(xbox, 3)//X button
+    new JoystickButton(xbox, 3)//X button
+    .whenPressed(new ActivateHookServo(35, m_servo));
     //.whenPressed(new ActivateFlyWheel(.5, m_flyWheelSystem));
     //.whenPressed(new ActivateLinearActuator(0.0, m_linearActuator)); //Activates a linear actuator
     //.whenPressed(new ActivateServo(0, m_servo));
     
     new JoystickButton(xbox, 1)//A button
-    .whileHeld(new ActivateServo(90, m_servo)); //sets angle to 90 this value will be reset to zero after called.
+    .whileHeld(new ActivateBallServo(90, m_servo)); //sets angle to 90 this value will be reset to zero after called.
     
     new JoystickButton(xbox, 1)
-    .whenReleased(new ActivateServo(0, m_servo));
+    .whenReleased(new ActivateBallServo(0, m_servo));
   }
 
     

@@ -6,14 +6,21 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class ServoSystem extends SubsystemBase{
 
+    public static Servo ballServo = new Servo(0);
+    public static Servo hookServo = new Servo(1);//change ID
+
     public ServoSystem(){
         
     }
 
-    public void change(double angle){
+    public void changeBallServo(double angle){
         
-        RobotContainer.ballServo.setAngle(angle); //sets the angle of the servo based on a double
-        System.out.println("Angle: " + RobotContainer.ballServo.getAngle());
+        ballServo.setAngle(angle); //sets the angle of the servo based on a double
+    }
+
+    public void changeHookServo(double angle){
+        hookServo.setAngle(angle);
+        //System.out.println("AHHHHHHHHHHHHHHHHH");
     }
     
 }

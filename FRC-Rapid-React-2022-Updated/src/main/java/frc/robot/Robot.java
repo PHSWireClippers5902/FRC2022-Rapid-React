@@ -100,6 +100,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopInit() {
     //RobotContainer.lightSystem.getAllianceColor();
+    ServoSystem.hookServo.setAngle(0);
   }
 
   /**
@@ -108,8 +109,8 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     //driveTrain.driveWithXbox();
-    RobotContainer.mecanumSystem.driveWithMecanum();
-    RobotContainer.actuatorTest.setSpeed(.1);
+    //RobotContainer.mecanumSystem.driveWithMecanum();
+    //RobotContainer.actuatorTest.setSpeed(.1);
     //set angle also gives some weird results
     
     
