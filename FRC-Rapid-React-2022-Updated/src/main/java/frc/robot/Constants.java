@@ -8,15 +8,15 @@ public final class Constants{
       public static final int backRightMotorPort = 3;
   }
   public static final class AimConstants{
-      public static final int aimMotorPort = 9;
+      public static final int aimMotorPort = 15;
       public static final double P = 0.1; 
       public static final double I = 1e-4;
       public static final double D = 0; 
       public static final double Iz = 0; 
       public static final double FF = 0; 
-      public static final double MaxOutput = .2; 
-      public static final double MinOutput = -.1;
-      public static final float MotorUpPosition = 10;
+      public static final double MaxOutput = .1; 
+      public static final double MinOutput = -0.05;
+      public static final float MotorUpPosition = 12;
       public static final float MotorDownPosition = 0;
   }
   public static final class ClimbConstants{

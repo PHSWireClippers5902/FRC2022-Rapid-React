@@ -11,7 +11,7 @@ import static frc.robot.Constants.AimConstants;
 
 public class AimSystem extends SubsystemBase{
 
-    private CANSparkMax m_motor;
+    public CANSparkMax m_motor;
     private SparkMaxPIDController m_pidController;
     public RelativeEncoder m_encoder;
     
@@ -21,7 +21,8 @@ public class AimSystem extends SubsystemBase{
         m_motor.restoreFactoryDefaults();
         m_pidController = m_motor.getPIDController();
         m_encoder = m_motor.getEncoder();
-        m_encoder.setPosition(0);
+        //m_motor.setInverted(true);
+        m_encoder.setPosition(12);
         //setSoftLimits();
         configurePID();
     }
@@ -44,9 +45,9 @@ public class AimSystem extends SubsystemBase{
         m_pidController.setReference(position, CANSparkMax.ControlType.kPosition);
     }
 
-    // public void resetPosition(){
-    //     m_encoder.setPosition(0);
-    // }
+    public void resetPosition(){
+        m_encoder.setPosition(0);
+    }
 
     public void disableMotor(){
         m_motor.disable();

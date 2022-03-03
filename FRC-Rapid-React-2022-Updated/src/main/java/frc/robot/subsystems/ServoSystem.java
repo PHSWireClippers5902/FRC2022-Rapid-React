@@ -7,8 +7,8 @@ import static frc.robot.Constants.ServoConstants;;
 
 public class ServoSystem extends SubsystemBase{
 
-    private Servo ballServo = new Servo(ServoConstants.BallServoPort);
-    private Servo hookServo = new Servo(ServoConstants.HookServoPort);
+    public Servo ballServo = new Servo(ServoConstants.BallServoPort);
+    public Servo hookServo = new Servo(ServoConstants.HookServoPort);
 
     public void changeBallServo(double angle){
         ballServo.setAngle(angle); //sets the angle of the servo based on a double

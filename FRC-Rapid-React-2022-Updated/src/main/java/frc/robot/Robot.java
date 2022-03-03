@@ -54,6 +54,8 @@ public class Robot extends TimedRobot {
     m_chooser.addOption("My Auto", kCustomAuto);
     //SmartDashboard.putData("Auto choices", m_chooser);
     System.out.println("Robot Init - NOW");
+
+
   }
 
   /**
@@ -105,6 +107,9 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopInit() {
     //RobotContainer.lightSystem.getAllianceColor();
+    m_robotContainer.m_servo.hookServo.setAngle(180);
+    m_robotContainer.m_servo.ballServo.setAngle(20);
+    m_robotContainer.m_aimSystem.aimTo(0);
    }
 
   /**
