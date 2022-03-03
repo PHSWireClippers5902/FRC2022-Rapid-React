@@ -6,8 +6,8 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class ServoSystem extends SubsystemBase{
 
-    public static Servo ballServo = new Servo(0);
-    public static Servo hookServo = new Servo(1);//change ID
+    public static Servo ballServo = new Servo(2);
+    public static Servo hookServo = new Servo(0);//change ID
 
     public ServoSystem(){
         
