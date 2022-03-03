@@ -34,7 +34,7 @@ public class RobotContainer {
     private final FlyWheel m_flyWheelSystem = new FlyWheel();
     private final LinearActuator m_linearActuator = new LinearActuator();
     private final UltrasonicSystem m_UltrasonicSystem = new UltrasonicSystem();
-    private final AimSystem m_aimSystem = new AimSystem();
+    public final AimSystem m_aimSystem = new AimSystem();
     private final ClimbSystem m_climbSystem = new ClimbSystem();
     private final ServoSystem m_servo = new ServoSystem();
   
@@ -47,6 +47,7 @@ public class RobotContainer {
     configureButtonBindings();
     m_mecanumSystem.setDefaultCommand(new DriveWithMecanum(xbox, m_mecanumSystem));
     m_UltrasonicSystem.setDefaultCommand(new CheckDistance(m_UltrasonicSystem));
+    m_aimSystem.setSpeed(0.1);
   }
   
 
@@ -54,12 +55,16 @@ public class RobotContainer {
   private void configureButtonBindings(){ 
     //Locks Climb
     new JoystickButton(xbox, ControllerConstants.X)
-    .whenPressed(new InstantCommand(() -> {m_servo.changeHookServo(35);}, m_servo));
-    
+    .whenPressed(() -> {m_servo.changeHookServo(35);}, m_servo);
+
     //Ball Collection Hook
-    new JoystickButton(xbox, ControllerConstants.A)
-    .whileHeld(new InstantCommand(() -> {m_servo.changeBallServo(90);}, m_servo))
-    .whenReleased(new InstantCommand(() -> {m_servo.changeBallServo(0);}, m_servo));//sets angle to 90 this value will be reset to zero after called.
+    // new JoystickButton(xbox, ControllerConstants.A)
+    // .whenHeld(new StartEndCommand(
+    //   () -> {m_servo.changeBallServo(90);},
+    //   () -> {m_servo.changeBallServo(0);},
+    //   m_servo));
+    //.whenPressed(new InstantCommand(() -> {m_servo.changeBallServo(0);}, m_servo))
+    //.whenReleased(new InstantCommand(() -> {m_servo.changeBallServo(90);}, m_servo));//sets angle to 90 this value will be reset to zero after called.
 
     //Shoots Ball
     new JoystickButton(xbox, ControllerConstants.Y)
@@ -68,11 +73,16 @@ public class RobotContainer {
     .whenHeld(new ActivateFlyWheel(-0.75, m_flyWheelSystem));
 
     //Aim
+    /*
     new JoystickButton(xbox, ControllerConstants.B)
     .toggleWhenPressed(new StartEndCommand(
-      () -> {m_aimSystem.aimTo(AimConstants.MotorDownPosition);},
       () -> {m_aimSystem.aimTo(AimConstants.MotorUpPosition);},
-      m_aimSystem));
+      () -> {m_aimSystem.aimTo(AimConstants.MotorDownPosition);},
+      m_aimSystem));*/
+      new JoystickButton(xbox, ControllerConstants.B)
+      .whenPressed(() -> {m_aimSystem.setSpeed(0.1);}, m_aimSystem);
+      new JoystickButton(xbox, ControllerConstants.A)
+      .whenPressed(() -> {m_aimSystem.setSpeed(0);}, m_aimSystem);
     
     //Climb arm
     new JoystickButton(xbox, ControllerConstants.LeftButton)

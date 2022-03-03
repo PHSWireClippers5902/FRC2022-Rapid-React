@@ -18,7 +18,7 @@ public class DriveWithMecanum extends CommandBase {
 
   @Override
   public void execute() {
-    m_mecanum.drive(-xb.getLeftY(), -xb.getRightX(), xb.getRightTriggerAxis() - xb.getLeftTriggerAxis());
+    m_mecanum.drive(-xb.getLeftY(), xb.getRightX(), xb.getRightTriggerAxis() - xb.getLeftTriggerAxis());
   }
 
   @Override

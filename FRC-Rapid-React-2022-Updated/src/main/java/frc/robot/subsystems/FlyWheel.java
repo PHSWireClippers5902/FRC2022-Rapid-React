@@ -17,8 +17,8 @@ public class FlyWheel extends SubsystemBase{
     public static CANSparkMax spark2 = new CANSparkMax(FlyWheelConstants.motorTwoPort, MotorType.kBrushless);
   
     public void speed(double speed){
-        spark.set(speed);
-        spark2.set(speed * -1);
+        spark.set(speed * -1);
+        spark2.set(speed);
        
     }
 }

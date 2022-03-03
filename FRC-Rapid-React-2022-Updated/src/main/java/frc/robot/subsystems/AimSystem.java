@@ -13,7 +13,7 @@ public class AimSystem extends SubsystemBase{
 
     private CANSparkMax m_motor;
     private SparkMaxPIDController m_pidController;
-    private RelativeEncoder m_encoder;
+    public RelativeEncoder m_encoder;
     
 
     public AimSystem(){
@@ -44,9 +44,9 @@ public class AimSystem extends SubsystemBase{
         m_pidController.setReference(position, CANSparkMax.ControlType.kPosition);
     }
 
-    public void resetPosition(){
-        m_encoder.setPosition(0);
-    }
+    // public void resetPosition(){
+    //     m_encoder.setPosition(0);
+    // }
 
     public void disableMotor(){
         m_motor.disable();
@@ -54,5 +54,9 @@ public class AimSystem extends SubsystemBase{
 
     public double getPosition(){
         return m_encoder.getPosition();
+    }
+
+    public void setSpeed(double speed){
+        m_motor.set(speed);
     }
 }
