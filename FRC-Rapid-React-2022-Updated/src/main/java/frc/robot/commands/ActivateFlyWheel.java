@@ -16,11 +16,11 @@ public class ActivateFlyWheel extends CommandBase {
 
   @Override
   public void execute() {
-    m_flyWheel.gofaster(speed);
+    m_flyWheel.speed(speed);
   }
 
   @Override
   public void end(boolean interrupted) {
-    m_flyWheel.gofaster(0);
+    m_flyWheel.speed(0);
   }
 }
