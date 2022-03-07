@@ -55,7 +55,6 @@ public class Robot extends TimedRobot {
     //SmartDashboard.putData("Auto choices", m_chooser);
     System.out.println("Robot Init - NOW");
 
-
   }
 
   /**
@@ -94,6 +93,7 @@ public class Robot extends TimedRobot {
     //RobotContainer.lightSystem.getAllianceColor();
     startTime = Timer.getFPGATimestamp();
     //RobotContainer.lightSystem.getAllianceColor();
+    m_robotContainer.autoCommand.schedule();
   }
 
   /**
@@ -101,6 +101,17 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousPeriodic() {
+    double time = Timer.getFPGATimestamp();
+    System.out.println("Time: " + (time - startTime));
+    if ((time - startTime) > 3){
+      m_robotContainer.autoCommand.cancel();
+    }
+    // if (((time - startTime) < 10) && ((time-startTime) > 3.2)){
+    //   m_robotContainer.autoshoot.schedule();
+    // }
+    // else{
+    //   m_robotContainer.autoshoot.cancel();
+    // }
 
   }
 
@@ -108,8 +119,9 @@ public class Robot extends TimedRobot {
   public void teleopInit() {
     //RobotContainer.lightSystem.getAllianceColor();
     m_robotContainer.m_servo.hookServo.setAngle(180);
-    m_robotContainer.m_servo.ballServo.setAngle(20);
-    m_robotContainer.m_aimSystem.aimTo(0);
+    m_robotContainer.m_servo.ballServo.setAngle(0);
+    m_robotContainer.m_aimSystem.m_encoder.setPosition(12);
+    m_robotContainer.m_aimSystem.aimTo(12);
    }
 
   /**

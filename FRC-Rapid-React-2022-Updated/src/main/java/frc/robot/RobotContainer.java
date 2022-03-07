@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.StartEndCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -30,13 +31,17 @@ import edu.wpi.first.wpilibj.AnalogInput;
 public class RobotContainer {
 
     //initializing subsystems(
-    private final MecanumSystem m_mecanumSystem = new MecanumSystem();
+    public final MecanumSystem m_mecanumSystem = new MecanumSystem();
     private final FlyWheel m_flyWheelSystem = new FlyWheel();
     private final LinearActuator m_linearActuator = new LinearActuator();
     private final UltrasonicSystem m_UltrasonicSystem = new UltrasonicSystem();
     public final AimSystem m_aimSystem = new AimSystem();
     private final ClimbSystem m_climbSystem = new ClimbSystem();
     public final ServoSystem m_servo = new ServoSystem();
+    //kill these abominations against nature as soon as possible
+    public final AutoDrive autoCommand = new AutoDrive(m_mecanumSystem);
+    public final ParallelCommandGroup autoshoot = new ParallelCommandGroup(new ActivateLinearActuator(1.0, m_linearActuator),
+    new ActivateFlyWheel(0.75, m_flyWheelSystem));
   
     // Xbox
     XboxController xbox = new XboxController(ControllerConstants.ControllerPort);
@@ -57,25 +62,27 @@ public class RobotContainer {
     .whenPressed(() -> {m_servo.changeHookServo(35);}, m_servo);
 
     //Ball Collection Hook
-    // new JoystickButton(xbox, ControllerConstants.A)
-    // .whenHeld(new StartEndCommand(
-    //   () -> {m_servo.changeBallServo(90);},
-    //   () -> {m_servo.changeBallServo(0);},
-    //   m_servo));
+    new JoystickButton(xbox, ControllerConstants.A)
+    //.whenPressed(new InstantCommand(() -> {m_aimSystem.resetPosition();}, m_aimSystem));
+    //.whenPressed(new InstantCommand(() -> {m_aimSystem.aimTo(0);}, m_aimSystem));
+    .whenHeld(new StartEndCommand(
+    () -> {m_servo.changeBallServo(90);},
+    () -> {m_servo.changeBallServo(30);},
+      m_servo));
     //.whenPressed(new InstantCommand(() -> {m_servo.changeBallServo(0);}, m_servo))
     //.whenReleased(new InstantCommand(() -> {m_servo.changeBallServo(90);}, m_servo));//sets angle to 90 this value will be reset to zero after called.
 
     //Shoots Ball
     new JoystickButton(xbox, ControllerConstants.Y)
     .whileHeld(new ActivateLinearActuator(1.0, m_linearActuator))
-    .whenReleased(new ActivateLinearActuator(-0.5, m_linearActuator))
-    .whenHeld(new ActivateFlyWheel(-0.75, m_flyWheelSystem));
+    .whenReleased(new ActivateLinearActuator(-1.0, m_linearActuator))
+    .whenHeld(new ActivateFlyWheel(1.0, m_flyWheelSystem));
 
     //Aim
     new JoystickButton(xbox, ControllerConstants.B)
     .toggleWhenPressed(new StartEndCommand(
-      () -> {m_aimSystem.aimTo(AimConstants.MotorUpPosition);},
       () -> {m_aimSystem.aimTo(AimConstants.MotorDownPosition);},
+      () -> {m_aimSystem.aimTo(AimConstants.MotorUpPosition);},
       m_aimSystem));
       // new JoystickButton(xbox, ControllerConstants.B)
       // .whenPressed(() -> {m_aimSystem.setSpeed(0.1);}, m_aimSystem);

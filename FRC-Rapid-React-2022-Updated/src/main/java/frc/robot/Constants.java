@@ -14,8 +14,8 @@ public final class Constants{
       public static final double D = 0; 
       public static final double Iz = 0; 
       public static final double FF = 0; 
-      public static final double MaxOutput = .1; 
-      public static final double MinOutput = -0.05;
+      public static final double MaxOutput = .3; 
+      public static final double MinOutput = -0.2;
       public static final float MotorUpPosition = 12;
       public static final float MotorDownPosition = 0;
   }

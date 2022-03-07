@@ -22,6 +22,7 @@ public class ClimbSystem extends SubsystemBase{
         m_pidController = m_motor.getPIDController();
         m_encoder = m_motor.getEncoder();
         m_encoder.setPosition(0);
+        //m_motor.setInverted(true);
         //who needs precision anyway??
         //m_encoder.setPositionConversionFactor(ClimbConstants.PostionConversionFactor);
         setSoftLimits();
