@@ -49,7 +49,6 @@ public class RobotContainer {
   public RobotContainer(){
     //Default Commands
     configureButtonBindings();
-    m_flyWheelSystem.setDefaultCommand(new ActivateFlyWheel(-.1, m_flyWheelSystem));
     m_mecanumSystem.setDefaultCommand(new DriveWithMecanum(xbox, m_mecanumSystem));
     m_UltrasonicSystem.setDefaultCommand(new CheckDistance(m_UltrasonicSystem));
   }
@@ -74,9 +73,9 @@ public class RobotContainer {
 
     //Shoots Ball
     new JoystickButton(xbox, ControllerConstants.Y)
-    .whileHeld(new ActivateLinearActuator(1.0, m_linearActuator))
-    .whenReleased(new ActivateLinearActuator(-1.0, m_linearActuator))
-    .whenHeld(new ActivateFlyWheel(1.0, m_flyWheelSystem));
+    //.whileHeld(new ActivateLinearActuator(1.0, m_linearActuator))
+    //.whenReleased(new ActivateLinearActuator(-1.0, m_linearActuator))
+    .whenHeld(new ActivateFlyWheel(.75, m_flyWheelSystem));
 
     //Aim
     new JoystickButton(xbox, ControllerConstants.B)

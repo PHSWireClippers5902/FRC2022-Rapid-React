@@ -43,8 +43,8 @@ public final class Constants{
       public static final int ControllerPort = 0;
   }
   public static final class FlyWheelConstants{
-      public static final int motorOnePort = 7;
-      public static final int motorTwoPort = 8;
+      public static final int motorOnePort = 6;
+      public static final int motorTwoPort = 5;
   }
   public static final class LinearActuatorConstants{
       public static final int ServoChannel = 1;    
