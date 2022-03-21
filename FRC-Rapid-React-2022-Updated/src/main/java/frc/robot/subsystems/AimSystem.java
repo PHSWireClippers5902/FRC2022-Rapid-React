@@ -21,8 +21,8 @@ public class AimSystem extends SubsystemBase{
         m_motor.restoreFactoryDefaults();
         m_pidController = m_motor.getPIDController();
         m_encoder = m_motor.getEncoder();
-        //m_motor.setInverted(true);
-        m_encoder.setPosition(12);
+        m_motor.setInverted(true);
+        m_encoder.setPosition(0);
         //setSoftLimits();
         configurePID();
     }
