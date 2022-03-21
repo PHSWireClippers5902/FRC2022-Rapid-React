@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import frc.robot.subsystems.*;
 import frc.robot.RobotContainer;
+import frc.robot.commands.AutoCommand;
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.AnalogInput;
@@ -56,6 +57,9 @@ public class Robot extends TimedRobot {
     System.out.println("Robot Init - NOW");
     //CameraServer.startAutomaticCapture(0);
     //CameraServer.startAutomaticCapture(1);
+
+    m_robotContainer.m_aimSystem.m_encoder.setPosition(28);
+    m_robotContainer.m_aimSystem.aimTo(Constants.AimConstants.MotorUpPosition);
   }
 
 
@@ -105,7 +109,7 @@ public class Robot extends TimedRobot {
   public void autonomousPeriodic() {
 
 
-    
+
     /*
     double time = Timer.getFPGATimestamp();
     System.out.println("Time: " + (time - startTime));
@@ -129,8 +133,6 @@ public class Robot extends TimedRobot {
     //RobotContainer.lightSystem.getAllianceColor();
     m_robotContainer.m_servo.hookServo.setAngle(180);
     m_robotContainer.m_servo.ballServo.setAngle(0);
-    m_robotContainer.m_aimSystem.m_encoder.setPosition(28);
-    m_robotContainer.m_aimSystem.aimTo(24);
    }
 
   /**

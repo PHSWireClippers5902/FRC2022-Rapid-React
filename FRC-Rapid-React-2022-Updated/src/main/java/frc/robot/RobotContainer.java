@@ -38,10 +38,11 @@ public class RobotContainer {
     public final AimSystem m_aimSystem = new AimSystem();
     private final ClimbSystem m_climbSystem = new ClimbSystem();
     public final ServoSystem m_servo = new ServoSystem();
+
+    public final AutoCommand autoCommand = new AutoCommand(m_mecanumSystem, m_flyWheelSystem, m_linearActuator);
     //kill these abominations against nature as soon as possible
-    public final AutoDrive autoCommand = new AutoDrive(m_mecanumSystem);
-    public final ParallelCommandGroup autoshoot = new ParallelCommandGroup(new ActivateLinearActuator(1.0, m_linearActuator),
-    new ActivateFlyWheel(0.75, m_flyWheelSystem));
+    //public final AutoDrive autoCommand = new AutoDrive(m_mecanumSystem);
+
   
     // Xbox
     XboxController xbox = new XboxController(ControllerConstants.ControllerPort);
