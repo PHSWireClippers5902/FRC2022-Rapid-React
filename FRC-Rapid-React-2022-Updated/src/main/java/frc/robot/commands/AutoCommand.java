@@ -24,7 +24,7 @@ public class AutoCommand extends SequentialCommandGroup {
 
 
         //Adding Auto Commands
-        addCommands(new AutoDrive(m_mecanum, 0.2, 0, 0).withTimeout(1.4));
+        //addCommands(new AutoDrive(m_mecanum, 0.2, 0, 0).withTimeout(1.4));
         addCommands(new ParallelCommandGroup(new ActivateFlyWheel(1, m_flyWheel), new ActivateLinearActuator(1.0, m_linearActuator)).withTimeout(4));
         addCommands(new ParallelCommandGroup(new ActivateLinearActuator(-1.0, m_linearActuator), new AutoDrive(m_mecanum, -0.2, 0, 0)).withTimeout(4));
 
