@@ -55,8 +55,9 @@ public class Robot extends TimedRobot {
     m_chooser.addOption("My Auto", kCustomAuto);
     //SmartDashboard.putData("Auto choices", m_chooser);
     System.out.println("Robot Init - NOW");
-    //CameraServer.startAutomaticCapture(0);
-    //CameraServer.startAutomaticCapture(1);
+
+    CameraServer.startAutomaticCapture(0);
+    CameraServer.startAutomaticCapture(1);
 
   }
 
