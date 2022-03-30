@@ -9,6 +9,9 @@ public class DriveWithMecanum extends CommandBase {
 
   private final MecanumSystem m_mecanum;
   private XboxController xb;
+  private double forward;
+  private double sideways;
+  private double turn;
 
   public DriveWithMecanum(XboxController xbox, MecanumSystem subSystem){
     xb = xbox;
@@ -18,7 +21,10 @@ public class DriveWithMecanum extends CommandBase {
 
   @Override
   public void execute() {
-    m_mecanum.drive(xb.getRightTriggerAxis() - xb.getLeftTriggerAxis(), xb.getRightX(), xb.getLeftX());
+    forward = xb.getRightTriggerAxis() - xb.getLeftTriggerAxis();
+    sideways = xb.getRightX();
+    turn = (forward < 0) ? -xb.getLeftX() : xb.getLeftX();
+    m_mecanum.drive(forward, sideways, turn);
   }
 
   @Override
