@@ -9,14 +9,19 @@ import frc.robot.RobotContainer;
 
 public class AutoDrive extends CommandBase {
     private MecanumSystem mecanumSystem;
-    public AutoDrive(MecanumSystem subsSystem){
+    double fowardX, lateralY, rotationalZ;
+    public AutoDrive(MecanumSystem subsSystem, double x, double y, double z){
+        fowardX = x;
+        lateralY = y;
+        rotationalZ = z;
+
         mecanumSystem = subsSystem;
         addRequirements(mecanumSystem);
     }
 
     @Override
     public void execute() {
-        mecanumSystem.drive(-0.2, 0, 0);
+        mecanumSystem.drive(fowardX, lateralY, rotationalZ);
     }
     @Override
     public void end(boolean interupted){

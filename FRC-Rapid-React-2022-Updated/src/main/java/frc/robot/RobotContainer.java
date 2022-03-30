@@ -38,6 +38,8 @@ public class RobotContainer {
     public final AimSystem m_aimSystem = new AimSystem();
     private final ClimbSystem m_climbSystem = new ClimbSystem();
     public final ServoSystem m_servo = new ServoSystem();
+
+    public final AutoCommand autoCommand = new AutoCommand(m_mecanumSystem, m_flyWheelSystem, m_linearActuator);
     //kill these abominations against nature as soon as possible
     public final AutoDrive autoCommand = new AutoDrive(m_mecanumSystem);
     public final ParallelCommandGroup autoshoot = new ParallelCommandGroup(new ActivateLinearActuator(1.0, m_linearActuator),
@@ -53,9 +55,9 @@ public class RobotContainer {
   public RobotContainer(){
     //Default Commands
     configureButtonBindings();
-    m_flyWheelSystem.setDefaultCommand(new ActivateFlyWheel(-.1, m_flyWheelSystem));
+    //m_flyWheelSystem.setDefaultCommand(new ActivateFlyWheel(-.1, m_flyWheelSystem));
     m_mecanumSystem.setDefaultCommand(new DriveWithMecanum(xbox, m_mecanumSystem));
-    m_UltrasonicSystem.setDefaultCommand(new CheckDistance(m_UltrasonicSystem));
+    //m_UltrasonicSystem.setDefaultCommand(new CheckDistance(m_UltrasonicSystem));
   }
   
 
@@ -87,6 +89,10 @@ public class RobotContainer {
     //Aim
     new JoystickButton(xbox, ControllerConstants.B)
     .toggleWhenPressed(aimUpDownCommand);
+    .toggleWhenPressed(new StartEndCommand(
+      () -> {m_flyWheelSystem.speed(-0.1);}, 
+      () -> {m_flyWheelSystem.speed(0.0);},
+       m_flyWheelSystem));
       // new JoystickButton(xbox, ControllerConstants.B)
       // .whenPressed(() -> {m_aimSystem.setSpeed(0.1);}, m_aimSystem);
       // new JoystickButton(xbox, ControllerConstants.A)

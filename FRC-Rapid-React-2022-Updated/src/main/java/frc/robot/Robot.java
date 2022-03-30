@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import frc.robot.subsystems.*;
 import frc.robot.RobotContainer;
+import frc.robot.commands.AutoCommand;
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.AnalogInput;
@@ -54,10 +55,12 @@ public class Robot extends TimedRobot {
     m_chooser.addOption("My Auto", kCustomAuto);
     //SmartDashboard.putData("Auto choices", m_chooser);
     System.out.println("Robot Init - NOW");
+
     CameraServer.startAutomaticCapture(0);
     CameraServer.startAutomaticCapture(1);
 
   }
+
 
   /**
    * This function is called every robot packet, no matter the mode. Use this for
@@ -103,11 +106,18 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousPeriodic() {
+
+
+
+    /*
     double time = Timer.getFPGATimestamp();
     System.out.println("Time: " + (time - startTime));
+
     if ((time - startTime) > 3){
       m_robotContainer.autoCommand.cancel();
     }
+    */
+    
     // if (((time - startTime) < 10) && ((time-startTime) > 3.2)){
     //   m_robotContainer.autoshoot.schedule();
     // }
@@ -122,8 +132,6 @@ public class Robot extends TimedRobot {
     //RobotContainer.lightSystem.getAllianceColor();
     m_robotContainer.m_servo.hookServo.setAngle(180);
     m_robotContainer.m_servo.ballServo.setAngle(0);
-    m_robotContainer.m_aimSystem.m_encoder.setPosition(12);
-    m_robotContainer.m_aimSystem.aimTo(12);
    }
 
   /**

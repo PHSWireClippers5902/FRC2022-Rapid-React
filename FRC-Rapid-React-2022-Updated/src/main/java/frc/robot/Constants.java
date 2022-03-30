@@ -10,13 +10,13 @@ public final class Constants{
   public static final class AimConstants{
       public static final int aimMotorPort = 15;
       public static final double P = 0.7; 
-      public static final double I = 1e-4;
+      public static final double I = 0.00001;
       public static final double D = 0; 
       public static final double Iz = 0; 
       public static final double FF = 0; 
       public static final double MaxOutput = .1; 
       public static final double MinOutput = -0.1;
-      public static final float  MotorUpPosition = 25;
+      public static final float MotorUpPosition = 25;
       public static final float MotorDownPosition = (float) 0.5;
   }
   public static final class ClimbConstants{
