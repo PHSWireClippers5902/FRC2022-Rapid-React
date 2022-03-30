@@ -50,9 +50,9 @@ public class RobotContainer {
   public RobotContainer(){
     //Default Commands
     configureButtonBindings();
-    m_flyWheelSystem.setDefaultCommand(new ActivateFlyWheel(-.1, m_flyWheelSystem));
+    //m_flyWheelSystem.setDefaultCommand(new ActivateFlyWheel(-.1, m_flyWheelSystem));
     m_mecanumSystem.setDefaultCommand(new DriveWithMecanum(xbox, m_mecanumSystem));
-    m_UltrasonicSystem.setDefaultCommand(new CheckDistance(m_UltrasonicSystem));
+    //m_UltrasonicSystem.setDefaultCommand(new CheckDistance(m_UltrasonicSystem));
   }
   
 
@@ -84,7 +84,11 @@ public class RobotContainer {
     .toggleWhenPressed(new StartEndCommand(
       () -> {m_aimSystem.aimTo(AimConstants.MotorDownPosition);},
       () -> {m_aimSystem.aimTo(AimConstants.MotorUpPosition);},
-      m_aimSystem));
+      m_aimSystem))
+    .toggleWhenPressed(new StartEndCommand(
+      () -> {m_flyWheelSystem.speed(-0.1);}, 
+      () -> {m_flyWheelSystem.speed(0.0);},
+       m_flyWheelSystem));
       // new JoystickButton(xbox, ControllerConstants.B)
       // .whenPressed(() -> {m_aimSystem.setSpeed(0.1);}, m_aimSystem);
       // new JoystickButton(xbox, ControllerConstants.A)

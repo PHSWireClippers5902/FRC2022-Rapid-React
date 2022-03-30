@@ -58,8 +58,6 @@ public class Robot extends TimedRobot {
     //CameraServer.startAutomaticCapture(0);
     //CameraServer.startAutomaticCapture(1);
 
-    m_robotContainer.m_aimSystem.m_encoder.setPosition(28);
-    m_robotContainer.m_aimSystem.aimTo(Constants.AimConstants.MotorUpPosition);
   }
 
 

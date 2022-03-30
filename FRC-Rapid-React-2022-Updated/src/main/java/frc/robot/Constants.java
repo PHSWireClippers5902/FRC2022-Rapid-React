@@ -28,7 +28,7 @@ public final class Constants{
     public static final double FF = 0; 
     public static final double MaxOutput = .2; 
     public static final double MinOutput = -.2;
-    public static final float MotorUpPosition = 48;
+    public static final float MotorUpPosition = 52;
     public static final float MotorDownPosition = 0;
     //Don't use this maybe??? who knowwss? Cruunch
     //public static final double PostionConversionFactor = 2;
