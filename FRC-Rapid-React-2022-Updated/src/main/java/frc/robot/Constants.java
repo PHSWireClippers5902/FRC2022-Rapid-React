@@ -16,8 +16,8 @@ public final class Constants{
       public static final double FF = 0; 
       public static final double MaxOutput = .1; 
       public static final double MinOutput = -0.1;
-      public static final double  MotorUpPosition = 25;
-      public static final double MotorDownPosition = 0.5;
+      public static final float  MotorUpPosition = 25;
+      public static final float MotorDownPosition = (float) 0.5;
   }
   public static final class ClimbConstants{
     public static final int climbMotorPort = 10;
