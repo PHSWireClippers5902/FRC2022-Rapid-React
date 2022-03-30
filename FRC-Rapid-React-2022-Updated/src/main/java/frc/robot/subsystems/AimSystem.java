@@ -12,7 +12,7 @@ import static frc.robot.Constants.AimConstants;
 public class AimSystem extends SubsystemBase{
 
     public CANSparkMax m_motor;
-    public SparkMaxPIDController m_pidController;
+    private SparkMaxPIDController m_pidController;
     public RelativeEncoder m_encoder;
     
 
@@ -22,7 +22,8 @@ public class AimSystem extends SubsystemBase{
         m_pidController = m_motor.getPIDController();
         m_encoder = m_motor.getEncoder();
         m_motor.setInverted(true);
-        m_encoder.setPosition(0);
+        m_encoder.setPosition(28);
+        aimTo(AimConstants.MotorUpPosition);
         //setSoftLimits();
         configurePID();
     }
