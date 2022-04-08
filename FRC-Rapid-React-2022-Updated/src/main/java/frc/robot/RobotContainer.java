@@ -36,7 +36,7 @@ public class RobotContainer {
     private final LinearActuator m_linearActuator = new LinearActuator();
     private final UltrasonicSystem m_UltrasonicSystem = new UltrasonicSystem();
     public final AimSystem m_aimSystem = new AimSystem();
-    private final ClimbSystem m_climbSystem = new ClimbSystem();
+    public final ClimbSystem m_climbSystem = new ClimbSystem();
     public final ServoSystem m_servo = new ServoSystem();
 
     public final AutoCommand autoCommand = new AutoCommand(m_mecanumSystem, m_flyWheelSystem, m_linearActuator);
@@ -64,7 +64,7 @@ public class RobotContainer {
     //Locks Climb
     new JoystickButton(xbox, ControllerConstants.X)
     .whenPressed(() -> {m_servo.changeHookServo(35);}, m_servo)
-    .whenPressed(aimUpDownCommand);
+    .cancelWhenPressed(aimUpDownCommand);
   
 
     //Ball Collection Hook
@@ -91,10 +91,13 @@ public class RobotContainer {
       () -> {m_flyWheelSystem.speed(-0.1);}, 
       () -> {m_flyWheelSystem.speed(0.0);},
        m_flyWheelSystem));
-      // new JoystickButton(xbox, ControllerConstants.B)
-      // .whenPressed(() -> {m_aimSystem.setSpeed(0.1);}, m_aimSystem);
-      // new JoystickButton(xbox, ControllerConstants.A)
-      // .whenPressed(() -> {m_aimSystem.setSpeed(0);}, m_aimSystem);
+    
+    //I hate this. I hate programming in pit. AAHH
+    //Sometimes the robot gets confused about what angle aim system is at. When this happens, smash the cannon against the ground and press this button
+    new JoystickButton(xbox, ControllerConstants.LinkButton)
+    .whenPressed(() -> {m_aimSystem.setPosition(0.5);}, m_aimSystem)
+    .whenPressed(aimUpDownCommand);
+
     
     //Climb arm
     new JoystickButton(xbox, ControllerConstants.LeftButton)

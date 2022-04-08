@@ -77,6 +77,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
       CommandScheduler.getInstance().run();
+      System.out.println(m_robotContainer.m_aimSystem.getPosition());
   }
 
   /**
@@ -93,6 +94,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
+    m_robotContainer.m_aimSystem.setPosition(28);
+    m_robotContainer.m_climbSystem.setPosition(0);
     m_autoSelected = m_chooser.getSelected();
     System.out.println("Auto selected: " + m_autoSelected);
     //RobotContainer.lightSystem.getAllianceColor();
@@ -139,7 +142,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
-    System.out.println(m_robotContainer.m_aimSystem.getPosition());
+    // System.out.println(m_robotContainer.m_aimSystem.getPosition());
   }
   
 

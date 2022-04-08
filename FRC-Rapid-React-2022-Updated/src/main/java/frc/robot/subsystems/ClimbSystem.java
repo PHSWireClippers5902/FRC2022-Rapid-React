@@ -47,6 +47,10 @@ public class ClimbSystem extends SubsystemBase{
         m_pidController.setReference(position, CANSparkMax.ControlType.kPosition);
     }
 
+    public void setPosition(double position){
+        m_encoder.setPosition(position);
+    }
+
     public void disableMotor(){
         m_motor.disable();
     }

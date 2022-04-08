@@ -28,7 +28,7 @@ public final class Constants{
     public static final double FF = 0; 
     public static final double MaxOutput = .2; 
     public static final double MinOutput = -.2;
-    public static final float MotorUpPosition = 52;
+    public static final float MotorUpPosition = 57;
     public static final float MotorDownPosition = 0;
     //Don't use this maybe??? who knowwss? Cruunch
     //public static final double PostionConversionFactor = 2;
@@ -40,6 +40,7 @@ public final class Constants{
       public static final int Y = 4;
       public static final int LeftButton = 5;
       public static final int RightButton = 6;
+      public static final int LinkButton = 7;
       public static final int ControllerPort = 0;
   }
   public static final class FlyWheelConstants{
